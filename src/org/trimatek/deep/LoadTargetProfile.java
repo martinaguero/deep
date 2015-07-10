@@ -11,8 +11,8 @@ public class LoadTargetProfile {
 			ClassNotFoundException {
 
 		String path = "F:\\Docs\\Martín\\Dropbox\\Tesis\\workspace.tests\\drools-expert\\lib\\";
-		path = path + "slf4j-api-1.7.2.jar";
-		String mask = "org.slf4j";
+		path = path + "protobuf-java-2.5.0.jar";
+		String mask = "com.google.protobuf";
 
 		TargetService targetService = new TargetService();
 		TargetProfile target = targetService.loadTargetProfile(path, mask);
