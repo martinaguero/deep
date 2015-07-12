@@ -6,13 +6,40 @@ import java.util.List;
 public class ClassProfile {
 
 	private String className;
+	private boolean interfaz;
+	private boolean abstrac;
+	private boolean clase;
 
 	public ClassProfile(String className) {
 		this.className = className;
 	}
 
-	public Integer getTotalPublicAttributes() {
-		return fields.size() + methods.size() + constructors.size();
+	public boolean isInterfaz() {
+		return interfaz;
+	}
+
+	public void setInterfaz(boolean interfaz) {
+		this.interfaz = interfaz;
+	}
+
+	public boolean isAbstrac() {
+		return abstrac;
+	}
+
+	public void setAbstrac(boolean abstrac) {
+		this.abstrac = abstrac;
+	}
+
+	public boolean isClase() {
+		return clase;
+	}
+
+	public void setClase(boolean clase) {
+		this.clase = clase;
+	}
+
+	public Integer getTotalPublicFieldsMethods() {
+		return fields.size() + methods.size() - 1;
 	}
 
 	public String getClassName() {
@@ -25,7 +52,6 @@ public class ClassProfile {
 
 	private List<String> fields = new ArrayList<String>();
 	private List<String> methods = new ArrayList<String>();
-	private List<String> constructors = new ArrayList<String>();
 
 	public List<String> getFields() {
 		return fields;
@@ -51,23 +77,7 @@ public class ClassProfile {
 		methods.add(methodName);
 	}
 
-	public List<String> getConstructors() {
-		return constructors;
-	}
-
-	public void setConstructors(List<String> constructors) {
-		this.constructors = constructors;
-	}
-
-	public void addConstructor(String constructorName) {
-		constructors.add(constructorName);
-	}
-
 	public boolean isClassResource(String string) {
-		for (String c : constructors) {
-			if (string.equals(c))
-				return Boolean.TRUE;
-		}
 		for (String m : methods) {
 			if (string.equals(m))
 				return Boolean.TRUE;
@@ -78,8 +88,8 @@ public class ClassProfile {
 		}
 		return Boolean.FALSE;
 	}
-	
-	public String toString(){
+
+	public String toString() {
 		return getClassName();
 	}
 

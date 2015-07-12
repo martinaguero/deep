@@ -18,7 +18,6 @@ public class ClassVisitorService {
 		ClassParser parser = new ClassParser(jarPath, className.replace(".",
 				"/") + ".class");
 		JavaClass javaClass = parser.parse();
-
 		Visitor visitor = new Visitor(javaClass);
 		DescendingVisitor classWalker = new DescendingVisitor(javaClass,
 				visitor);

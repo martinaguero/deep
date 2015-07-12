@@ -8,21 +8,17 @@ public class TargetProfile {
 	public final String NAMESPACE;
 
 	private List<ClassProfile> classes = new ArrayList<ClassProfile>();
-	private Integer totalPublicAttributes;
 
 	public TargetProfile(String NAMESPACE) {
 		this.NAMESPACE = NAMESPACE;
 	}
 
 	public Integer getTotalPublicAttributes() {
-		if (totalPublicAttributes == null) {
-			totalPublicAttributes = 0;
-			for (ClassProfile cp : classes) {
-				totalPublicAttributes = totalPublicAttributes
-						+ cp.getTotalPublicAttributes();
-			}
+		int c = 0;
+		for (ClassProfile cp : classes) {
+			c = c + cp.getTotalPublicFieldsMethods();
 		}
-		return totalPublicAttributes;
+		return c;
 	}
 
 	public List<ClassProfile> getClasses() {
@@ -31,6 +27,33 @@ public class TargetProfile {
 
 	public void setClasses(List<ClassProfile> classes) {
 		this.classes = classes;
+	}
+
+	public int getInterfacesCount() {
+		int c = 0;
+		for (ClassProfile classProfile : classes) {
+			if (classProfile.isInterfaz())
+				c++;
+		}
+		return c;
+	}
+
+	public int getAbstractCount() {
+		int c = 0;
+		for (ClassProfile classProfile : classes) {
+			if (classProfile.isAbstrac())
+				c++;
+		}
+		return c;
+	}
+
+	public int getClassCount() {
+		int c = 0;
+		for (ClassProfile classProfile : classes) {
+			if (classProfile.isClase())
+				c++;
+		}
+		return c;
 	}
 
 	public void addClass(ClassProfile classProfile) {

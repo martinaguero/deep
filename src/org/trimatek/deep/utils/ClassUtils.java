@@ -1,13 +1,14 @@
 package org.trimatek.deep.utils;
 
 import java.io.File;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 
+import org.apache.bcel.classfile.Field;
+import org.apache.bcel.classfile.JavaClass;
+import org.apache.bcel.classfile.Method;
 import org.trimatek.deep.model.ClassProfile;
 
 public class ClassUtils {
@@ -18,38 +19,35 @@ public class ClassUtils {
 		return new URLClassLoader(urls);
 	}
 
-	public static ClassProfile loaddAllPublicResources(Class clase,
+	public static ClassProfile loaddAllPublicResources(JavaClass clase,
 			ClassProfile cp) {
 		cp = loadAllPublicMethods(clase, cp);
 		cp = loadAllPublicFields(clase, cp);
-		cp = loadAllPublicConstructors(clase, cp);
+		if (clase.isClass() && !clase.isAbstract() && !clase.isInterface()) {
+			cp.setClase(clase.isClass());
+		} else if (clase.isAbstract() && !clase.isInterface()) {
+			cp.setAbstrac(clase.isAbstract());
+		} else if (clase.isInterface()) {
+			cp.setInterfaz(clase.isInterface());
+		}
 		return cp;
 	}
 
-	private static ClassProfile loadAllPublicMethods(Class clazz,
+	private static ClassProfile loadAllPublicMethods(JavaClass jc,
 			ClassProfile cp) {
-		for (Method m : clazz.getDeclaredMethods()) {
-			if (m.getModifiers() == 1) {
+		for (Method m : jc.getMethods()) {
+			if (m.isPublic()) {
 				cp.addMethod(m.getName());
 			}
 		}
 		return cp;
 	}
 
-	private static ClassProfile loadAllPublicFields(Class clazz, ClassProfile cp) {
-		for (Field f : clazz.getDeclaredFields()) {
-			if (f.getModifiers() == 1) {
-				cp.addField(f.getName());
-			}
-		}
-		return cp;
-	}
-
-	private static ClassProfile loadAllPublicConstructors(Class clazz,
+	private static ClassProfile loadAllPublicFields(JavaClass jc,
 			ClassProfile cp) {
-		for (Constructor c : clazz.getDeclaredConstructors()) {
-			if (c.getModifiers() == 1) {
-				cp.addConstructor(c.getName());
+		for (Field f : jc.getFields()) {
+			if (f.isPublic()) {
+				cp.addField(f.getName());
 			}
 		}
 		return cp;
