@@ -10,7 +10,7 @@ public class LoadTargetProfile {
 	public static TargetProfile loadTargetProfile() throws IOException,
 			ClassNotFoundException {
 
-		String path = "F:\\Docs\\Martín\\Dropbox\\Tesis\\workspace.tests\\drools-expert\\lib\\";
+		String path = "c:\\Temp\\drools\\lib\\";
 		path = path + "protobuf-java-2.5.0.jar";
 		String mask = "com.google.protobuf";
 

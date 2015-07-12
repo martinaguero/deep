@@ -20,6 +20,7 @@ import org.apache.commons.collections4.map.MultiValueMap;
 import org.trimatek.deep.lexer.JavaLexer;
 import org.trimatek.deep.model.ClassProfile;
 import org.trimatek.deep.model.TargetProfile;
+import org.trimatek.deep.service.ClassVisitorService;
 
 public class FileUtils {
 
@@ -34,29 +35,20 @@ public class FileUtils {
 		return fList;
 	}
 
-	public static MultiMap<File, ClassProfile> findRelations(List<File> files,
-			TargetProfile target) throws FileNotFoundException {
-		MultiMap<File, ClassProfile> map = new MultiValueMap<File, ClassProfile>();
-		for (File file : files) {
-			Scanner scanner = new Scanner(file, "UTF-8");
-			while (scanner.hasNextLine()) {
-				String line = scanner.nextLine();
-				if (line.contains("import")) {
-					line = line.replace(";", "");
-					line = line.replace("import ", "");
-					line = line.replace("static ", "");
-					boolean isCandidate = ClassUtils.isInsidePackage(line,
-							target.NAMESPACE.split("\\."));
-					if (isCandidate) {
-						for (ClassProfile cp : target.getClasses()) {
-							if (cp.getClassName().equals(line)) {
-								map.put(file, cp);
-							}
-						}
+	public static MultiMap<String, ClassProfile> findRelations(
+			String sourceJarPath, TargetProfile target) throws Exception {
+		MultiMap<String, ClassProfile> map = new MultiValueMap<String, ClassProfile>();
+		List<String> classes = JarUtils.listClasses(sourceJarPath);
+		ClassVisitorService cv = new ClassVisitorService();
+		for (String className : classes) {
+			List<String> refList = cv.listReferences(sourceJarPath, className);
+			for (ClassProfile cp : target.getClasses()) {
+				for (String ref : refList) {
+					if (cp.getClassName().equals(ref.replace("/", "."))) {
+						map.put(className, cp);
 					}
 				}
 			}
-			scanner.close();
 		}
 		return map;
 	}
@@ -73,6 +65,10 @@ public class FileUtils {
 			File file = (File) keyIterator.next();
 			List<ClassProfile> classes = (List<ClassProfile>) fileClassMap
 					.get(file);
+			Scanner scanner = new Scanner(file, "UTF-8");
+			while (scanner.hasNextLine()) {
+				String line = scanner.nextLine();
+			}
 		}
 		// TODO to be completed
 		return null;
