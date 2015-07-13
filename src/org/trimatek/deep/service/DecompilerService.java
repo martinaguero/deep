@@ -1,11 +1,14 @@
 package org.trimatek.deep.service;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.util.jar.JarFile;
 
+import com.strobel.assembler.metadata.CompositeTypeLoader;
+import com.strobel.assembler.metadata.JarTypeLoader;
 import com.strobel.decompiler.Decompiler;
-import com.strobel.decompiler.DecompilerDriver;
 import com.strobel.decompiler.DecompilerSettings;
 import com.strobel.decompiler.PlainTextOutput;
 
@@ -15,16 +18,15 @@ public class DecompilerService {
 			.javaDefaults();
 	private ByteArrayOutputStream out = new ByteArrayOutputStream();
 
-	public void decompile(String jarPath, String outputPath) {
-		String[] arguments = { "-jar", jarPath, "-o", outputPath };
-		DecompilerDriver.main(arguments);
-	}
-
-	public String decompile(String className) throws Exception {
+	public String decompile(String className, String jarPath) throws Exception {
 		out.flush();
+		JarFile jarFile = new JarFile(new File(jarPath));
+		CompositeTypeLoader c = new CompositeTypeLoader(new JarTypeLoader(
+				jarFile));
+		settings.setTypeLoader(c);
 		try (final OutputStreamWriter writer = new OutputStreamWriter(out);) {
-			Decompiler.decompile(className, new PlainTextOutput(writer),
-					settings);
+			Decompiler.decompile(className.replace(".", "/"),
+					new PlainTextOutput(writer), settings);
 		} catch (final IOException e) {
 			throw new Exception(e.getMessage());
 		}
