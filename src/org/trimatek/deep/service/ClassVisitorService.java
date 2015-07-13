@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.bcel.classfile.ClassParser;
-import org.apache.bcel.classfile.ConstantClass;
 import org.apache.bcel.classfile.ConstantPool;
+import org.apache.bcel.classfile.ConstantUtf8;
 import org.apache.bcel.classfile.DescendingVisitor;
 import org.apache.bcel.classfile.EmptyVisitor;
 import org.apache.bcel.classfile.JavaClass;
@@ -39,9 +39,10 @@ class Visitor extends EmptyVisitor {
 		this.javaClass = javaClass;
 	}
 
-	@Override
-	public void visitConstantClass(ConstantClass obj) {
+	public void visitConstantUtf8(ConstantUtf8 obj) {
 		ConstantPool cp = javaClass.getConstantPool();
-		classes.add(obj.getBytes(cp).toString());
+		String s = obj.getBytes();
+		classes.add(s);
 	}
+
 }

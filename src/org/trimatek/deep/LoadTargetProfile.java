@@ -10,9 +10,9 @@ public class LoadTargetProfile {
 	public static TargetProfile loadTargetProfile() throws IOException,
 			ClassNotFoundException {
 
-		String path = "c:\\Temp\\drools\\lib\\";
-		path = path + "kie-api-6.2.0.Final.jar";
-		String mask = "org.kie.api";
+		String path = "c:\\Temp\\";
+		path = path + "test.jar";
+		String mask = "org.trimatek";
 
 		TargetService targetService = new TargetService();
 		TargetProfile target = targetService.loadTargetProfile(path, mask);
