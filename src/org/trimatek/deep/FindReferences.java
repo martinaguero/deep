@@ -5,7 +5,6 @@ import java.util.Set;
 import org.apache.commons.collections4.MultiMap;
 import org.trimatek.deep.model.ClassProfile;
 import org.trimatek.deep.model.TargetProfile;
-import org.trimatek.deep.utils.FileUtils;
 import org.trimatek.deep.utils.Utils;
 
 public class FindReferences {
