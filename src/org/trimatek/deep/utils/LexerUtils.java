@@ -12,7 +12,6 @@ public class LexerUtils {
 
 	public static List<String> toTokens(String sourceCode) {
 		Lexer lexer = new JavaLexer(new ANTLRInputStream(sourceCode));
-		//CommonTokenStream tokens = new CommonTokenStream(lexer);
 		List<String> tokensList = new ArrayList<String>();
 		for (Token token = lexer.nextToken(); token.getType() != Token.EOF; token = lexer
 				.nextToken()) {

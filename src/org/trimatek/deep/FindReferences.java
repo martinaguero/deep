@@ -12,7 +12,7 @@ public class FindReferences {
 	public static void main(String[] args) throws Exception {
 
 		/* Source */
-		String sourceJarPath = "c:\\Temp\\";
+		String sourceJarPath = "f:\\Temp\\";
 		sourceJarPath = sourceJarPath + "source.jar";
 
 		/* Target */

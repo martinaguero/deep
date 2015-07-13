@@ -10,8 +10,8 @@ public class LoadTargetProfile {
 	public static TargetProfile loadTargetProfile() throws IOException,
 			ClassNotFoundException {
 
-		String path = "c:\\Temp\\";
-		path = path + "test.jar";
+		String path = "f:\\Temp\\";
+		path = path + "target.jar";
 		String mask = "org.trimatek";
 
 		TargetService targetService = new TargetService();
