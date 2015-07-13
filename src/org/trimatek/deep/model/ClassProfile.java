@@ -38,7 +38,7 @@ public class ClassProfile {
 		this.clase = clase;
 	}
 
-	public Integer getTotalPublicFieldsMethods() {
+	public Integer getTotalPublicMembers() {
 		return fields.size() + methods.size() - 1;
 	}
 
@@ -91,6 +91,12 @@ public class ClassProfile {
 
 	public String toString() {
 		return getClassName();
+	}
+
+	public List<String> getMembers() {
+		List<String> membersList = getMethods();
+		membersList.addAll(getFields());
+		return membersList;
 	}
 
 }

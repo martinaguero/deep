@@ -1,0 +1,1 @@
+1.Keep relation between statemens and the declared variable of external class reference

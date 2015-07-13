@@ -27,4 +27,9 @@ public class JarUtils {
 		return classes;
 	}
 
+	public static String getJarName(String jarPath) {
+		return jarPath.substring(jarPath.lastIndexOf("\\") + 1,
+				jarPath.lastIndexOf("."));
+	}
+
 }

@@ -13,10 +13,10 @@ public class TargetProfile {
 		this.NAMESPACE = NAMESPACE;
 	}
 
-	public Integer getTotalPublicAttributes() {
+	public Integer getTotalPublicMembers() {
 		int c = 0;
 		for (ClassProfile cp : classes) {
-			c = c + cp.getTotalPublicFieldsMethods();
+			c = c + cp.getTotalPublicMembers();
 		}
 		return c;
 	}

@@ -23,7 +23,7 @@ public class LoadTargetProfile {
 		System.out.println("Total of public abstract classes: " + target.getAbstractCount());
 		System.out.println("Total of public interfaces: " + target.getInterfacesCount());
 		System.out.println("Public fields and methods: "
-				+ target.getTotalPublicAttributes());
+				+ target.getTotalPublicMembers());
 		return target;
 	}
 

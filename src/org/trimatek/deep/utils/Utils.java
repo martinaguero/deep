@@ -9,9 +9,15 @@ import org.apache.commons.collections4.MultiMap;
 import org.apache.commons.collections4.map.MultiValueMap;
 import org.trimatek.deep.model.ClassProfile;
 import org.trimatek.deep.model.TargetProfile;
+import org.trimatek.deep.model.TreeNode;
 import org.trimatek.deep.service.ClassVisitorService;
+import org.trimatek.deep.service.DecompilerService;
+import org.trimatek.deep.service.ParserService;
 
 public class Utils {
+
+	private static DecompilerService dc = new DecompilerService();
+	private static ParserService ps = new ParserService();
 
 	public static Set<ClassProfile> toUniquesClassProfiles(
 			MultiMap<String, ClassProfile> fileClassMap) {
@@ -47,5 +53,43 @@ public class Utils {
 		}
 		return map;
 	}
-	 
+
+	public static TreeNode<?> buildDepTree(MultiMap<String, ClassProfile> map,
+			String targetJarPath) throws Exception {
+		TreeNode root = new TreeNode(JarUtils.getJarName(targetJarPath));
+		TreeNode classNode;
+		String sourceCode;
+		List<String> statements;
+		Set<String> keySet = map.keySet();
+		Iterator<String> keyIterator = keySet.iterator();
+		while (keyIterator.hasNext()) {
+			String className = (String) keyIterator.next();
+			classNode = new TreeNode(className);
+			List<ClassProfile> classes = (List<ClassProfile>) map
+					.get(className);
+			sourceCode = dc.decompile(className, targetJarPath);
+			statements = ps.parseStatementsExpressions(sourceCode);
+			root = getNodes(classes, statements, classNode);
+		}
+		return root;
+	}
+
+	private static TreeNode<?> getNodes(List<ClassProfile> classes,
+			List<String> statements, TreeNode node) {
+		TreeNode classNode;
+		TreeNode memberNode;
+		for (ClassProfile classProfile : classes) {
+			classNode = node.addChild(classProfile.getClassName());
+			for (String member : classProfile.getMembers()) {
+				for (String statement : statements) {
+					if (statement.contains(member)) {
+						classNode.addChild(member);
+					}
+				}
+			}
+			
+		}
+		return node;
+	}
+
 }
