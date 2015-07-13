@@ -70,7 +70,7 @@ public class Utils {
 		Iterator<String> keyIterator = keySet.iterator();
 		while (keyIterator.hasNext()) {
 			String className = (String) keyIterator.next();
-			//classNode = root.addChild(className);
+			classNode = root.addChild(className);
 			List<ClassProfile> classes = (List<ClassProfile>) map
 					.get(className);
 			sourceCode = dc.decompile(className, targetJarPath);
