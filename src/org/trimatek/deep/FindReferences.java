@@ -15,7 +15,7 @@ public class FindReferences {
 
 		/* Source */
 		String sourceJarPath = "f:\\Temp\\";
-		sourceJarPath = sourceJarPath + "source.jar";
+		sourceJarPath = sourceJarPath + "source2.jar";
 
 		/* Target */
 		TargetProfile target = LoadTargetProfile.loadTargetProfile();
@@ -28,7 +28,7 @@ public class FindReferences {
 						+ uniques.size() + "\n");
 		TreeNode<?> tree = Utils.buildDepTree(depMap, sourceJarPath);
 
-		
+		System.out.println("\n");
 		for (TreeNode treeNode : tree) {
 			String indent = createIndent(treeNode.getLevel());
 			System.out.println(indent + treeNode.data);
