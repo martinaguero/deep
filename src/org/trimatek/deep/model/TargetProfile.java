@@ -8,6 +8,7 @@ public class TargetProfile {
 	public final String NAMESPACE;
 
 	private List<ClassProfile> classes = new ArrayList<ClassProfile>();
+	private List<MemberProfile> members = new ArrayList<MemberProfile>();
 
 	public TargetProfile(String NAMESPACE) {
 		this.NAMESPACE = NAMESPACE;
@@ -59,6 +60,10 @@ public class TargetProfile {
 	public void addClass(ClassProfile classProfile) {
 		classes.add(classProfile);
 	}
+	
+	public void addMember(MemberProfile memberProfile){
+		members.add(memberProfile);
+	}
 
 	public boolean isTargetClassName(String className) {
 		for (ClassProfile classProfile : classes) {
@@ -68,19 +73,37 @@ public class TargetProfile {
 		return Boolean.FALSE;
 	}
 
-	public boolean contains(String className) {
+	public boolean containsClassProfile(String className) {
 		for (ClassProfile classProfile : classes) {
 			if (classProfile.getClassName().equals(className))
 				return true;
 		}
 		return false;
 	}
+	
+	public boolean containsMemberProfile(String memberName) {
+		for (MemberProfile memberProfile : members) {
+			if (memberProfile.getMemberName().equals(memberName))
+				return true;
+		}
+		return false;
+	}
 
-	public ClassProfile remove(String className) {
+	public ClassProfile removeClass(String className) {
 		for (ClassProfile classProfile : classes) {
 			if (classProfile.getClassName().equals(className)) {
 				classes.remove(classProfile);
 				return classProfile;
+			}
+		}
+		return null;
+	}
+	
+	public MemberProfile removeMember(String memberName) {
+		for (MemberProfile memberProfile : members) {
+			if (memberProfile.getMemberName().equals(memberName)) {
+				members.remove(memberProfile);
+				return memberProfile;
 			}
 		}
 		return null;

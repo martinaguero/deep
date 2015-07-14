@@ -102,8 +102,8 @@ public class Utils {
 	private static TreeNode addMember(String statement, String field,
 			Type type, TreeNode classNode) {
 		if (statement.contains(field)) {
-			if (classNode.findTreeNode(type.getSymbol() + field) == null) {
-				classNode.addChild(type.getSymbol() + field);
+			if (classNode.findTreeNode(field + type.getSymbol()) == null) {
+				classNode.addChild(field + type.getSymbol());
 			}
 		}
 		return classNode;

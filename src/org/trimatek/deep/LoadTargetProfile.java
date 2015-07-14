@@ -10,9 +10,9 @@ public class LoadTargetProfile {
 	public static TargetProfile loadTargetProfile() throws IOException,
 			ClassNotFoundException {
 
-		String path = "f:\\Temp\\";
-		path = path + "target.jar";
-		String mask = "org.trimatek";
+		String path = "f:\\Temp\\lib\\";
+		path = path + "log4j-1.2.14.jar";
+		String mask = "org.apache.log4j";
 
 		TargetService targetService = new TargetService();
 		TargetProfile target = targetService.loadTargetProfile(path, mask);
