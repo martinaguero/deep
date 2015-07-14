@@ -35,13 +35,13 @@ public class FindReferences {
 		}
 
 
-		System.out.println("terminó");
+		System.out.println("terminÃ³");
 	}
 
 	private static String createIndent(int depth) {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < depth; i++) {
-			sb.append(' ');
+			sb.append("  ");
 		}
 		return sb.toString();
 	}

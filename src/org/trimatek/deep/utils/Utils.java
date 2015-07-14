@@ -49,9 +49,9 @@ public class Utils {
 		ClassVisitorService cv = new ClassVisitorService();
 		for (String className : classes) {
 			List<String> refList = cv.listReferences(sourceJarPath, className);
-			for (ClassProfile cp : target.getClasses()) {
-				for (String ref : refList) {
-					if (cp.getClassName().contains(ref.replace("/", "."))) {
+			for (String ref : refList) {
+				for (ClassProfile cp : target.getClasses()) {
+					if (ref.replace("/", ".").contains(cp.getClassName())) {
 						map.put(className, cp);
 					}
 				}
@@ -75,29 +75,29 @@ public class Utils {
 					.get(className);
 			sourceCode = dc.decompile(className, targetJarPath);
 			statements = ps.parseStatementsExpressions(sourceCode);
-			root = getNodes(classes, statements, root);
+			getNodes(classes, statements, classNode);
 		}
 		return root;
 	}
 
 	private static TreeNode<?> getNodes(List<ClassProfile> classes,
-			List<String> statements, TreeNode node) {
+			List<String> statements, TreeNode root) {
 		TreeNode classNode;
 		TreeNode memberNode;
 		for (ClassProfile classProfile : toUniques(classes)) {
-			classNode = node.addChild(classProfile.getClassName());
-			for (String statement : statements) {
-				for (String field : classProfile.getFields()) {
-					classNode = addMember(statement, field, MemberType.field,
-							classNode);
-				}
-				for (String method : classProfile.getMethods()) {
-					classNode = addMember(statement, method, MemberType.method,
-							classNode);
-				}
-			}
+			classNode = root.addChild(classProfile.getClassName());
+//			for (String statement : statements) {
+//				for (String field : classProfile.getFields()) {
+//					classNode = addMember(statement, field, MemberType.field,
+//							classNode);
+//				}
+//				for (String method : classProfile.getMethods()) {
+//					classNode = addMember(statement, method, MemberType.method,
+//							classNode);
+//				}
+//			}
 		}
-		return node;
+		return root;
 	}
 
 	private static TreeNode addMember(String statement, String field,
