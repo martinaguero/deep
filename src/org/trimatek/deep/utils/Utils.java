@@ -62,7 +62,8 @@ public class Utils {
 
 	public static TreeNode<?> buildDepTree(MultiMap<String, ClassProfile> map,
 			String targetJarPath) throws Exception {
-		TreeNode root = new TreeNode(JarUtils.getJarName(targetJarPath));
+		TreeNode root = new TreeNode(JarUtils.getJarName(targetJarPath)
+				+ ".jar");
 		TreeNode classNode;
 		String sourceCode;
 		List<String> statements;
@@ -86,16 +87,14 @@ public class Utils {
 		TreeNode memberNode;
 		for (ClassProfile classProfile : toUniques(classes)) {
 			classNode = root.addChild(classProfile.getClassName());
-//			for (String statement : statements) {
-//				for (String field : classProfile.getFields()) {
-//					classNode = addMember(statement, field, MemberType.field,
-//							classNode);
-//				}
-//				for (String method : classProfile.getMethods()) {
-//					classNode = addMember(statement, method, MemberType.method,
-//							classNode);
-//				}
-//			}
+			for (String statement : statements) {
+				for (String field : classProfile.getFields()) {
+					addMember(statement, field, MemberType.field, classNode);
+				}
+				for (String method : classProfile.getMethods()) {
+					addMember(statement, method, MemberType.method, classNode);
+				}
+			}
 		}
 		return root;
 	}

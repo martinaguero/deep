@@ -14,12 +14,12 @@ import com.strobel.decompiler.PlainTextOutput;
 
 public class DecompilerService {
 
-	private final DecompilerSettings settings = DecompilerSettings
+	private DecompilerSettings settings = DecompilerSettings
 			.javaDefaults();
-	private ByteArrayOutputStream out = new ByteArrayOutputStream();
+	private ByteArrayOutputStream out;
 
 	public String decompile(String className, String jarPath) throws Exception {
-		out.flush();
+		out = new ByteArrayOutputStream();
 		JarFile jarFile = new JarFile(new File(jarPath));
 		CompositeTypeLoader c = new CompositeTypeLoader(new JarTypeLoader(
 				jarFile));

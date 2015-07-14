@@ -14,8 +14,8 @@ public class FindReferences {
 	public static void main(String[] args) throws Exception {
 
 		/* Source */
-		String sourceJarPath = "f:\\Temp\\";
-		sourceJarPath = sourceJarPath + "source2.jar";
+		String sourceJarPath = "f:\\Temp\\lib\\";
+		sourceJarPath = sourceJarPath + "spring.jar";
 
 		/* Target */
 		TargetProfile target = LoadTargetProfile.loadTargetProfile();

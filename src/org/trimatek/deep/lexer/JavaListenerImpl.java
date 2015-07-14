@@ -14,7 +14,9 @@ public class JavaListenerImpl extends JavaBaseListener {
 	}
 
 	public List<String> getStatements() {
-		return statements;
+		List<String> buf = new ArrayList<String>(statements);
+		statements.clear();
+		return buf;
 	}
 
 	public void enterStatementExpression(StatementExpressionContext ctx) {

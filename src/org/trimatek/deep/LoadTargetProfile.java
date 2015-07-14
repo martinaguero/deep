@@ -10,14 +10,15 @@ public class LoadTargetProfile {
 	public static TargetProfile loadTargetProfile() throws IOException,
 			ClassNotFoundException {
 
-		String path = "f:\\Temp\\";
-		path = path + "target.jar";
-		String mask = "org.trimatek";
+		String path = "f:\\Temp\\lib\\";
+		path = path + "log4j-1.2.14.jar";
+		String mask = "org.apache.log4j";
 
 		TargetService targetService = new TargetService();
 		TargetProfile target = targetService.loadTargetProfile(path, mask);
 
 		System.out.println("**Library profile**");
+		System.out.println(path.substring(path.lastIndexOf("\\")+1));
 		System.out.println("Total of public class files: " + target.getClasses().size());
 		System.out.println("Total of public classes: " + target.getClassCount());
 		System.out.println("Total of public abstract classes: " + target.getAbstractCount());
