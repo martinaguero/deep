@@ -68,4 +68,22 @@ public class TargetProfile {
 		return Boolean.FALSE;
 	}
 
+	public boolean contains(String className) {
+		for (ClassProfile classProfile : classes) {
+			if (classProfile.getClassName().equals(className))
+				return true;
+		}
+		return false;
+	}
+
+	public ClassProfile remove(String className) {
+		for (ClassProfile classProfile : classes) {
+			if (classProfile.getClassName().equals(className)) {
+				classes.remove(classProfile);
+				return classProfile;
+			}
+		}
+		return null;
+	}
+
 }

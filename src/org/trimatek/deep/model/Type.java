@@ -1,7 +1,7 @@
 package org.trimatek.deep.model;
 
 public enum Type {
-	field("[F]"), method("[M]"), clas("[C]"), abs("A"), inter(
+	field("[f]"), method("[m]"), clas("[C]"), abs("[A]"), inter(
 			"[I]");
 
 	private String symbol;
