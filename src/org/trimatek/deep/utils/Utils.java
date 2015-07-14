@@ -10,7 +10,7 @@ import org.apache.commons.collections4.map.MultiValueMap;
 import org.trimatek.deep.model.ClassProfile;
 import org.trimatek.deep.model.TargetProfile;
 import org.trimatek.deep.model.TreeNode;
-import org.trimatek.deep.model.MemberType;
+import org.trimatek.deep.model.Type;
 import org.trimatek.deep.service.ClassVisitorService;
 import org.trimatek.deep.service.DecompilerService;
 import org.trimatek.deep.service.ParserService;
@@ -85,14 +85,14 @@ public class Utils {
 			List<String> statements, TreeNode root) {
 		TreeNode classNode;
 		TreeNode memberNode;
-		for (ClassProfile classProfile : toUniques(classes)) {
-			classNode = root.addChild(classProfile.getClassName());
+		for (ClassProfile cp : toUniques(classes)) {
+			classNode = root.addChild(cp.getSymbol() + cp.getClassName());
 			for (String statement : statements) {
-				for (String field : classProfile.getFields()) {
-					addMember(statement, field, MemberType.field, classNode);
+				for (String field : cp.getFields()) {
+					addMember(statement, field, Type.field, classNode);
 				}
-				for (String method : classProfile.getMethods()) {
-					addMember(statement, method, MemberType.method, classNode);
+				for (String method : cp.getMethods()) {
+					addMember(statement, method, Type.method, classNode);
 				}
 			}
 		}
@@ -100,7 +100,7 @@ public class Utils {
 	}
 
 	private static TreeNode addMember(String statement, String field,
-			MemberType type, TreeNode classNode) {
+			Type type, TreeNode classNode) {
 		if (statement.contains(field)) {
 			if (classNode.findTreeNode(type.getSymbol() + field) == null) {
 				classNode.addChild(type.getSymbol() + field);

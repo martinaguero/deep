@@ -99,4 +99,14 @@ public class ClassProfile {
 		return membersList;
 	}
 
+	public String getSymbol() {
+		if (clase)
+			return Type.clas.getSymbol();
+		if (abstrac)
+			return Type.abs.getSymbol();
+		if (interfaz)
+			return Type.inter.getSymbol();
+		return "";
+	}
+
 }
