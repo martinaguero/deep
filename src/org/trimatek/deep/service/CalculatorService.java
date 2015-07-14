@@ -13,25 +13,20 @@ import org.trimatek.exception.ResultsException;
 public class CalculatorService {
 
 	private TargetProfile target;
-	private Result results = new Result();
+	private Result results;
 
-	public Result calcDepFactor(TargetProfile target, TreeNode<?> depTree)
+	public Result calcDepFactor(TargetProfile target, TreeNode<?> depTree, int ctrl)
 			throws IllegalArgumentException, IllegalAccessException,
 			ResultsException {
-		resetCounters();
+		results = new Result(target);
 		this.target = target;
 		for (TreeNode node : depTree) {
 			evalNode(node);
 		}
-		if (!validResults(results, target)) {
+		if (!validResults(results, target, ctrl)) {
 			throw new ResultsException("Invalid results");
 		}
 		return results;
-	}
-
-	private void resetCounters() throws IllegalArgumentException,
-			IllegalAccessException {
-		results = new Result();
 	}
 
 	private void evalNode(TreeNode<?> node) {
@@ -80,17 +75,8 @@ public class CalculatorService {
 		return target;
 	}
 
-	private boolean validResults(Result results, TargetProfile target) {
-		if (this.results.classes > this.target.getClasses().size())
-			return false;
-		if (this.results.concrete > this.target.getClassCount())
-			return false;
-		if (this.results.abstracts > this.target.getAbstractCount())
-			return false;
-		if (this.results.interfaces > this.target.getInterfacesCount())
-			return false;
-		if (this.results.fields + this.results.methods > target
-				.getTotalPublicMembers())
+	private boolean validResults(Result results, TargetProfile target, int ctrl) {
+		if (this.results.classes > ctrl)
 			return false;
 		return true;
 	}

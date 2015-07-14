@@ -60,8 +60,8 @@ public class TargetProfile {
 	public void addClass(ClassProfile classProfile) {
 		classes.add(classProfile);
 	}
-	
-	public void addMember(MemberProfile memberProfile){
+
+	public void addMember(MemberProfile memberProfile) {
 		members.add(memberProfile);
 	}
 
@@ -80,7 +80,7 @@ public class TargetProfile {
 		}
 		return false;
 	}
-	
+
 	public boolean containsMemberProfile(String memberName) {
 		for (MemberProfile memberProfile : members) {
 			if (memberProfile.getMemberName().equals(memberName))
@@ -98,7 +98,7 @@ public class TargetProfile {
 		}
 		return null;
 	}
-	
+
 	public MemberProfile removeMember(String memberName) {
 		for (MemberProfile memberProfile : members) {
 			if (memberProfile.getMemberName().equals(memberName)) {
@@ -107,6 +107,20 @@ public class TargetProfile {
 			}
 		}
 		return null;
+	}
+
+	public String toString() {
+		StringBuffer sb = new StringBuffer();
+		sb.append("\n**Library profile**");
+		sb.append("\n" + NAMESPACE + "\n");
+		sb.append("Total of public class files: " + getClasses().size() + "\n");
+		sb.append("Total of public classes: " + getClassCount() + "\n");
+		sb.append("Total of public abstract classes: " + getAbstractCount()
+				+ "\n");
+		sb.append("Total of public interfaces: " + getInterfacesCount() + "\n");
+		sb.append("Public fields and methods: " + getTotalPublicMembers()
+				+ "\n");
+		return sb.toString();
 	}
 
 }
