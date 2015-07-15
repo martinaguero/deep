@@ -3,8 +3,6 @@ package org.trimatek.deep;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Set;
 
@@ -31,8 +29,9 @@ public class Deep {
 			setup = loadSetup();
 			System.out.println(Constants.name + " " + Constants.version);
 			if (setup == null) {
-				System.out
-						.println("[setup not found] Please fill setup.ini file created at current directory and retry");
+				System.out.println("[setup not found] Please fill "
+						+ Constants.setup_file
+						+ " file created at current directory and retry");
 			} else {
 				System.out.println("Start " + Constants.df.format(new Date()));
 				result = start();
@@ -86,9 +85,11 @@ public class Deep {
 			writer.println("\n");
 			writer.println("# Windows path example: c:\\Temp");
 			writer.println("# Windows filename example: spring.jar");
+			writer.println("");
 			writer.println("[source]");
 			writer.println("path = ");
 			writer.println("filename = ");
+			writer.println("");
 			writer.println("[library]");
 			writer.println("path = ");
 			writer.println("filename = ");
