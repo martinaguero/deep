@@ -114,12 +114,11 @@ public class TargetProfile {
 		sb.append("\n**Library profile**");
 		sb.append("\n" + NAMESPACE + "\n");
 		sb.append("Total of public class files: " + getClasses().size() + "\n");
-		sb.append("Total of public classes: " + getClassCount() + "\n");
+		sb.append("Total of public concrete classes: " + getClassCount() + "\n");
 		sb.append("Total of public abstract classes: " + getAbstractCount()
 				+ "\n");
 		sb.append("Total of public interfaces: " + getInterfacesCount() + "\n");
-		sb.append("Public fields and methods: " + getTotalPublicMembers()
-				+ "\n");
+		sb.append("Public fields and methods: " + getTotalPublicMembers());
 		return sb.toString();
 	}
 
