@@ -20,21 +20,32 @@ import org.trimatek.deep.utils.Constants;
 import org.trimatek.deep.utils.TreeUtils;
 import org.trimatek.deep.utils.Utils;
 
-public class FindReferences {
-	
-	private static DateFormat df = new SimpleDateFormat("HH:mm:ss");
-	private static Date start, end;
-	private static Wini setup;
-	
-	public static void main(String[] args) throws Exception {
+public class Deep {
 
-		setup = loadSetup();
-		System.out.println(Constants.name + " " + Constants.version);
-		if(setup==null){
-			System.out.println("[setup not found] Please fill setup.ini file created at current directory and retry");
-		} else {
-		start = new Date();
-		System.out.println("Start " + df.format(start));
+	private static Wini setup;
+	private static Result result;
+
+	public static void main(String[] args) {
+
+		try {
+			setup = loadSetup();
+			System.out.println(Constants.name + " " + Constants.version);
+			if (setup == null) {
+				System.out
+						.println("[setup not found] Please fill setup.ini file created at current directory and retry");
+			} else {
+				System.out.println("Start " + Constants.df.format(new Date()));
+				result = start();
+				System.out.println(result.toString());
+				System.out.println("End " + Constants.df.format(new Date()));
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+
+	}
+
+	private static Result start() throws Exception {
 		/* Source */
 		String sourceJarPath = setup.get("source", "path") + "\\";
 		String jar = setup.get("source", "filename");
@@ -49,7 +60,8 @@ public class FindReferences {
 				sourceJarPath, target);
 		Set<ClassProfile> uniques = Utils.toUniquesClassProfiles(depMap);
 
-		System.out.println("\nStart of [" + jar + " -> " + target.getJarName() + "] analysis");
+		System.out.println("\nStart of [" + jar + " -> " + target.getJarName()
+				+ "] analysis");
 		System.out.println("\n**Quick survey:**");
 		System.out
 				.println("Total of referenced classes(concrete,abstract,interfaces) by "
@@ -59,20 +71,16 @@ public class FindReferences {
 		System.out.println("\n**Deep survey:**");
 		System.out.println(TreeUtils.printTree(depTree));
 
+		/* Calculate result */
 		CalculatorService cs = new CalculatorService();
-		Result r = cs.calcDepFactor(target, depTree, uniques.size());
-
-		System.out.println(r.toString());
-
-		end = new Date();
-		System.out.println("End " + df.format(end));
-		}
+		return cs.calcDepFactor(target, depTree, uniques.size());
 	}
 
-	private static Wini loadSetup() throws InvalidFileFormatException, IOException{
+	private static Wini loadSetup() throws InvalidFileFormatException,
+			IOException {
 		File file = new File(Constants.setup_file);
 		Wini ini = null;
-		if(!file.exists()){
+		if (!file.exists()) {
 			PrintWriter writer = new PrintWriter(Constants.setup_file, "UTF-8");
 			writer.println(Constants.name + " " + Constants.version);
 			writer.println("\n");
@@ -87,10 +95,9 @@ public class FindReferences {
 			writer.println("namespace = ");
 			writer.close();
 		} else {
-		ini = new Wini(file);
+			ini = new Wini(file);
 		}
 		return ini;
 	}
-
 
 }

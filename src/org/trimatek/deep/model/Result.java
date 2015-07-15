@@ -29,7 +29,7 @@ public class Result {
 	public String toString(){
 		updateResults();
 		StringBuffer sb = new StringBuffer();
-		sb.append("Tree symmary:" + "\n");
+		sb.append("Tree summary:" + "\n");
 		sb.append("Total of referenced classes: " + classes + "\n");
 		sb.append("Concrete: " + concrete + "\n");
 		sb.append("Abstract: " + abstracts + "\n");

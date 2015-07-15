@@ -1,9 +1,13 @@
 package org.trimatek.deep.utils;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 public class Constants {
 
 	public final static String name = "Deep: dependencies analyzer";
 	public final static float version = 1.0f;
 	public final static String setup_file = "deep.ini";
+	public final static DateFormat df = new SimpleDateFormat("HH:mm:ss");
 	
 }

@@ -1,4 +1,4 @@
-package org.trimatek.deep;
+package org.trimatek.deep.test;
 
 import java.io.IOException;
 import java.nio.file.Files;

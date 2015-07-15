@@ -1,4 +1,4 @@
-package org.trimatek.deep;
+package org.trimatek.deep.test;
 
 import org.trimatek.deep.service.DecompilerService;
 
