@@ -15,7 +15,7 @@ public class TargetService {
 	public TargetProfile loadTargetProfile(String path, String mask)
 			throws ClassNotFoundException, IOException {
 		List<String> classes = JarUtils.listClasses(path);
-		TargetProfile target = new TargetProfile(mask);
+		TargetProfile target = new TargetProfile(path,mask);
 		for (String className : classes) {
 			if (ClassUtils.isInsidePackage(className,
 					target.NAMESPACE.split("\\."))) {

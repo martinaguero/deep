@@ -39,7 +39,7 @@ public class FindReferences {
 				sourceJarPath, target);
 		Set<ClassProfile> uniques = Utils.toUniquesClassProfiles(depMap);
 
-		System.out.println("\nStart of [" + jar + " -> " + target.NAMESPACE + "] analysis");
+		System.out.println("\nStart of [" + jar + " -> " + target.getJarName() + "] analysis");
 		System.out.println("\n**Quick survey:**");
 		System.out
 				.println("Total of referenced classes(concrete,abstract,interfaces) by "

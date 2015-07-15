@@ -6,12 +6,18 @@ import java.util.List;
 public class TargetProfile {
 
 	public final String NAMESPACE;
+	public final String JARPATH;
 
 	private List<ClassProfile> classes = new ArrayList<ClassProfile>();
 	private List<MemberProfile> members = new ArrayList<MemberProfile>();
 
-	public TargetProfile(String NAMESPACE) {
+	public TargetProfile(String jarPath, String NAMESPACE) {
 		this.NAMESPACE = NAMESPACE;
+		this.JARPATH = jarPath;
+	}
+	
+	public String getJarName(){
+		return JARPATH.substring(JARPATH.lastIndexOf("\\")+1);
 	}
 
 	public Integer getTotalPublicMembers() {
@@ -112,7 +118,7 @@ public class TargetProfile {
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
 		sb.append("\n**Library profile**");
-		sb.append("\n" + NAMESPACE + "\n");
+		sb.append("\n" + getJarName() + "\n");
 		sb.append("Total of public class files: " + getClasses().size() + "\n");
 		sb.append("Total of public concrete classes: " + getClassCount() + "\n");
 		sb.append("Total of public abstract classes: " + getAbstractCount()
