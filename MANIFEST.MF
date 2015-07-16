@@ -1,6 +1,6 @@
 Name: org/trimatek/deep
 Implementation-Title: Deep dependencies analyzer
-Implementation-Version: 1.0
+Implementation-Version: 1.01
 Implementation-Vendor: Trimatek
 Manifest-Version: 1.0
 Class-Path: .
