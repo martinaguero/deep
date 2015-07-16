@@ -29,7 +29,7 @@ public class Deep {
 			setup = loadSetup();
 			System.out.println(Constants.name + " " + Constants.version);
 			if (setup == null) {
-				System.out.println("[setup not found] Please fill "
+				System.out.println("[Setup not found] Please fill "
 						+ Constants.setup_file
 						+ " file created at current directory and retry");
 			} else {
@@ -39,7 +39,7 @@ public class Deep {
 				System.out.println("End " + Constants.df.format(new Date()));
 			}
 		} catch (Exception e) {
-			System.out.println("[error] " + e.getMessage());
+			System.out.println("[Error] " + e.getMessage());
 		}
 
 	}
@@ -55,18 +55,20 @@ public class Deep {
 		System.out.println(target.toString());
 
 		/* Source -> Target */
+		System.out.println("\nStart of [" + jar + " -> " + target.getJarName()
+				+ "] analysis");
+		System.out.println("Please wait");
 		MultiMap<String, ClassProfile> depMap = Utils.findRelations(
 				sourceJarPath, target);
 		Set<ClassProfile> uniques = Utils.toUniquesClassProfiles(depMap);
 
-		System.out.println("\nStart of [" + jar + " -> " + target.getJarName()
-				+ "] analysis");
-		System.out.println("\n**Quick survey:**");
+		System.out.println("\n**Quick survey result:**");
 		System.out
 				.println("Total of referenced classes(concrete,abstract,interfaces) by "
 						+ jar + ": " + uniques.size() + "\n");
 		TreeNode<?> depTree = Utils.buildDepTree(depMap, sourceJarPath);
 
+		/* Tree build */
 		System.out.println("\n**Deep survey:**");
 		System.out.println(TreeUtils.printTree(depTree));
 
