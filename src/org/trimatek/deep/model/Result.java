@@ -18,11 +18,11 @@ public class Result {
 	}
 	
 	private void updateResults(){
-		totRate = classes/(float)tarClasses;
-		conRate = concrete/(float)tarConcrete;
-		absRate = abstracts/(float)tarAbstract;
-		intRate = interfaces/(float)tarIntefaces;
-		memRate = (fields+methods)/(float)tarMembers;
+		if(tarClasses!=0)totRate = classes/(float)tarClasses;
+		if(tarConcrete!=0)conRate = concrete/(float)tarConcrete;
+		if(tarAbstract!=0)absRate = abstracts/(float)tarAbstract;
+		if(tarIntefaces!=0)intRate = interfaces/(float)tarIntefaces;
+		if(tarMembers!=0)memRate = (fields+methods)/(float)tarMembers;
 		depRate = (conRate + absRate + intRate + memRate)/4;
 	}
 	

@@ -39,7 +39,7 @@ public class Deep {
 				System.out.println("End " + Constants.df.format(new Date()));
 			}
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			System.out.println("[error] " + e.getMessage());
 		}
 
 	}
