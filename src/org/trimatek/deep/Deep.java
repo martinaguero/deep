@@ -46,7 +46,7 @@ public class Deep {
 
 	private static Result start() throws Exception {
 		/* Source */
-		String sourceJarPath = setup.get("source", "path") + "\\";
+		String sourceJarPath = setup.get("source", "path") + Utils.getSlash();
 		String jar = setup.get("source", "filename");
 		sourceJarPath = sourceJarPath + jar;
 

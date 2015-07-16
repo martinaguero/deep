@@ -60,8 +60,9 @@ public class Utils {
 		return map;
 	}
 
-	public static TreeNode<?> buildDepTree(MultiMap<String, ClassProfile> sourceTargetmap,
-			String targetJarPath) throws Exception {
+	public static TreeNode<?> buildDepTree(
+			MultiMap<String, ClassProfile> sourceTargetmap, String targetJarPath)
+			throws Exception {
 		TreeNode root = new TreeNode(JarUtils.getJarName(targetJarPath)
 				+ ".jar");
 		TreeNode classNode;
@@ -109,5 +110,8 @@ public class Utils {
 		return classNode;
 	}
 
+	public static String getSlash() {
+		return System.getProperty("os.name").startsWith("W") ? "\\" : "/";
+	}
 
 }
