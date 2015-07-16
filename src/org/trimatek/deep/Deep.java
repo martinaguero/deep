@@ -66,10 +66,11 @@ public class Deep {
 		System.out
 				.println("Total of referenced classes(concrete,abstract,interfaces) by "
 						+ jar + ": " + uniques.size() + "\n");
-		TreeNode<?> depTree = Utils.buildDepTree(depMap, sourceJarPath);
-
+		
 		/* Tree build */
-		System.out.println("\n**Deep survey:**");
+		System.out.println("Building dependencies tree\nPlease wait");
+		TreeNode<?> depTree = Utils.buildDepTree(depMap, sourceJarPath);
+		System.out.println("\n\n**Deep survey:**");
 		System.out.println(TreeUtils.printTree(depTree));
 
 		/* Calculate result */
