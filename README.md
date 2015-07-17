@@ -34,7 +34,10 @@ The partial results are this proportions:
 ###### The Dependency Ratio is: ( A + B + C + D ) / 4
 
 ### screens
+Results:
 ![alt text](https://dl.dropboxusercontent.com/u/13410677/deep/img/dep-ratio-scr.jpg "Dependency ratio")
+Library profile:
+![alt text](https://dl.dropboxusercontent.com/u/13410677/deep/img/lib-profile-scr.jpg "Library profile")
 
 
 [here]:http://bit.ly/deep-jar
