@@ -1,7 +1,8 @@
 # deep
 **Java Dependencies Analysis**
 
-This software reads the byte code of a JAR file and calculates a degree of dependency between another JAR.
+This software reads the byte code of a JAR file and calculates a degree of dependency between another JAR. 
+It is a measure that can be used as a guide to determine a level level of coupling between two JAR files.
 
 ### version
 1.01
