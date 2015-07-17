@@ -7,7 +7,7 @@ This software reads the byte code of a JAR file and calculates a degree of depen
 1.01
 
 ### download
-The latest compiled versión can be downloaded from [here].
+The latest compiled version can be downloaded from [here].
 
 ### how to use
 ```sh
