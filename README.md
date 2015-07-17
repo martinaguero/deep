@@ -11,7 +11,7 @@ The latest versión can be downloaded from [here].
 
 ### how to use
 1. Compile it or download the JAR and run it from the command line:
-⋅⋅ *The first time it is executed it will create a deep.ini (in the same path as the deep.jar) to setup the paths to jars.
+_The first time it is executed it will create a deep.ini (in the same path as the deep.jar) to setup the paths to jars._
 ```sh
 java -jar deep.jar
 ```
