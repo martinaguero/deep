@@ -1,7 +1,7 @@
 # deep
-Deep Dependencies Analysis
+dependencies analysis
 
-This software reads the byte code of one JAR file and calculates a degree of dependency between another JAR.
+This software reads the byte code of a JAR file and calculates a degree of dependency between another JAR.
 
 # Version
 
