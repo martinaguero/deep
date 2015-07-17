@@ -10,7 +10,7 @@ This software reads the byte code of a JAR file and calculates a degree of depen
 The latest versión can be downloaded from [here].
 
 ### how to use
-* Compile it or download the JAR and run it from the command line:
+*1 Compile it or download the JAR and run it from the command line:
 ```sh
 java -jar deep.jar
 ```
