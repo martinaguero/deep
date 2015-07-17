@@ -31,7 +31,7 @@ The partial results are this proportions:
 * total of public *interfaces* available / total of referenced *interfaces* (C)
 * total of public *members* available / total of referenced *members* (D)
 
-###### The Dependency Ratio is: ( A + B + C + D ) / 4
+###### The Dependency Ratio is: `( A + B + C + D ) / 4`
 
 ### screens
 Screens of [**hibernate-core-4.3.10.Final.jar** -> **dom4j-1.6.1.jar**] analysis
@@ -54,10 +54,10 @@ Dependency ratio:
 
 
 ### author
-Martín Agüero is professor at [Universidad de Palermo]
+Martín Agüero is professor at the [Universidad de Palermo] of Buenos Aires, Argentina
 
 ### conctact
-Questions and suggestions are welcome at 'aguero.martin@gmail.com' 
+Questions and suggestions are welcome at `aguero.martin@gmail.com`
 
 [here]:http://bit.ly/deep-jar
 [Universidad de Palermo]: http://www.palermo.edu
