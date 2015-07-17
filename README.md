@@ -30,6 +30,7 @@ The partial results are this proportions:
 * total of public *abstract* classes available/total of referenced *abstract* classes (B)
 * total of public *interfaces* available/total of referenced *interfaces* (C)
 * total of public *members* available/total of referenced *members* (D)
+
 ###### The Dependency Ratio is: ( A + B + C + D ) / 4
 
 [here]:http://bit.ly/deep-jar
