@@ -15,8 +15,8 @@ The latest versión can be downloaded from [here].
 java -jar deep.jar
 ```
 And the first time it will create a deep.ini (in the same path as the deep.jar) to setup the paths to jars.
-2. Edit the deep.ini with the paths to the jar of the project [source] and the library [library]. (The namespace is the 
-threshold from were it search the class to be matched into the source project).
+2. Edit the deep.ini with the paths to the jar of the project [source] and the library [library]. The namespace is the 
+threshold from were it search the class to be matched into the source project (e.g. org.apache.commons.logging).
 
 
 [here]:http://bit.ly/deep-jar
