@@ -87,7 +87,10 @@ public class Deep {
 			writer.println(Constants.name + " " + Constants.version);
 			writer.println("\n");
 			writer.println("# Windows path example: c:\\Temp");
-			writer.println("# Windows filename example: spring.jar");
+			writer.println("# Linux path example: /tmp");
+			writer.println("# source filename example: hibernate-core-4.3.10.Final.jar");
+			writer.println("# library filename example: dom4j-1.6.1.jar");
+			writer.println("# namespace example: org.dom4j");
 			writer.println("");
 			writer.println("[source]");
 			writer.println("path = ");
