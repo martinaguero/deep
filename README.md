@@ -31,10 +31,11 @@ The partial results are this proportions:
 * total of public *interfaces* available / total of referenced *interfaces* (C)
 * total of public *members* available / total of referenced *members* (D)
 
-###### The Dependency Ratio is: ( A + B + C + D ) / 4
+###### The Dependency Ratio is: '( A + B + C + D ) / 4'
 
 ### screens
-Screens of [*hibernate-core-4.3.10.Final.jar* -> *dom4j-1.6.1.jar*] analysis
+Screens of [**hibernate-core-4.3.10.Final.jar** -> **dom4j-1.6.1.jar**] analysis
+
 Library profile
 
 ![alt text](https://dl.dropboxusercontent.com/u/13410677/deep/img/lib-profile-scr.jpg "Library profile")
