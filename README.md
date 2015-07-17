@@ -33,4 +33,8 @@ The partial results are this proportions:
 
 ###### The Dependency Ratio is: ( A + B + C + D ) / 4
 
+### screens
+![alt text](https://dl.dropboxusercontent.com/u/13410677/deep/img/dep-ratio-scr.jpg "Dependency ratio")
+
+
 [here]:http://bit.ly/deep-jar
