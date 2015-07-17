@@ -6,9 +6,16 @@ This software reads the byte code of a JAR file and calculates a degree of depen
 ### version
 1.01
 
+### download
+The latest versión can be downloaded from [binary].
+
 ### how to use
-Run it from command line:
+Download the JAR and run it from the command line:
 ```sh
 java -jar deep.jar
 ```
 And the first time it will create a deep.ini (in the same path as the deep.jar) to setup the paths to jars.
+
+
+
+[binary]:http://bit.ly/deep-jar
