@@ -18,10 +18,10 @@ java -jar deep.jar
 2. Edit the deep.ini with the paths to the jar of the source project [source] and the library [library]. The namespace is the threshold from were it search the class to be matched into the source project (e.g. org.apache.commons.logging).
 
 ### analysis
-1. The first step of the analysis is to survey the public classes (including abstracts and interfaces) and members (fields and methods) of the library.
-2. Then it search for references to classes of the library jar in the source jar and display a **_Quick Survey Result_**.
-3. The thirt step is to build **_Deep Survey_** displaying a hierarchical visualization in a dependency tree.
-4. Finally it calculates a **_Dependency Ratio_**.
+1. The first step of the analysis is to identify the public classes (including abstracts and interfaces) and members (fields and methods) of the library.
+2. Then it search for references to classes of the library jar in the source jar and display a Quick Survey Result.
+3. The thirt step is to build Deep Survey displaying a **_hierarchical visualization_** in a dependency tree.
+4. Finally it calculates a Dependency Ratio and outputs the results.
 
 ### calculations
 
