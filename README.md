@@ -20,7 +20,7 @@ java -jar deep.jar
 ### analysis
 1. The first step of the analysis is to survey the public classes (including abstracts and interfaces) and members (fields and methods) of the library.
 2. Then it search for references to classes of the library jar in the source jar and display a Quick Survey Result.
-3. The thirt step is to build a dependency tree.
+3. The thirt step is to build deep survey displaying a hierarchical visualization in a dependency tree.
 4. Finally it calculates a Dependency Ratio.
 
 ### calculations
