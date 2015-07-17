@@ -63,7 +63,7 @@ Dependency ratio:
 Martín Agüero is professor at [Universidad de Palermo] located in Buenos Aires, Argentina
 
 ### contact
-Questions, errors and suggestions are welcome at `aguero.martin@gmail.com`
+Questions, comments and suggestions are welcome at `aguero.martin@gmail.com`
 
 [here]:http://bit.ly/deep-jar
 [Universidad de Palermo]: http://www.palermo.edu
