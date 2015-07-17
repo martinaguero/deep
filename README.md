@@ -25,11 +25,11 @@ java -jar deep.jar
 
 ### calculations
 The partial results are this proportions:
-* total of public *class files* available at librery JAR / total of *referenced class files* by the source JAR
-* total of public *concrete* classes available / total of referenced *concrete* classes (A)
-* total of public *abstract* classes available / total of referenced *abstract* classes (B)
-* total of public *interfaces* available / total of referenced *interfaces* (C)
-* total of public *members* available / total of referenced *members* (D)
+* total of *referenced class files* by the source JAR / total of public *class files* available at library JAR
+* total of referenced *concrete* classes / total of public *concrete* classes available (A)
+* total of referenced *abstract* classes / total of public *abstract* classes available (B)
+* total of referenced *interfaces* / total of public *interfaces* available (C)
+* total of referenced *members* / total of public *members* available (D)
 
 ###### The Dependency Ratio is: `( A + B + C + D ) / 4`
 
