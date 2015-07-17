@@ -36,15 +36,19 @@ The partial results are this proportions:
 ### screens
 Screens of [**hibernate-core-4.3.10.Final.jar** -> **dom4j-1.6.1.jar**] analysis
 
-Library profile
+Library profile:
 
 ![alt text](https://dl.dropboxusercontent.com/u/13410677/deep/img/lib-profile-scr.jpg "Library profile")
 
-Hierarchical tree visualization
+Hierarchical tree visualization:
 
 ![alt text](https://dl.dropboxusercontent.com/u/13410677/deep/img/tree-scr.jpg "Tree view")
 
-Results
+Tree summary:
+
+![alt text](https://dl.dropboxusercontent.com/u/13410677/deep/img/tree-sum-scr.jpg "Tree summary")
+
+Results:
 
 ![alt text](https://dl.dropboxusercontent.com/u/13410677/deep/img/dep-ratio-scr.jpg "Dependency ratio")
 
