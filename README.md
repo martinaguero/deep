@@ -53,11 +53,11 @@ Dependency ratio:
 ![alt text](https://dl.dropboxusercontent.com/u/13410677/deep/img/dep-ratio-scr.jpg "Dependency ratio")
 
 ### technology
-*Apache BCEL 5.2
-*Apache Commons Collections 4.4
-*ANTLR 4.5
-*Procyon decompiler 0.5.29
-*ini4j 0.5.4
+* Apache BCEL 5.2
+* Apache Commons Collections 4.4
+* ANTLR 4.5
+* Procyon decompiler 0.5.29
+* ini4j 0.5.4
 
 ### author
 Martín Agüero is professor at [Universidad de Palermo] located in Buenos Aires, Argentina
