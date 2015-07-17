@@ -13,7 +13,7 @@ The latest versión can be downloaded from [here].
 ```sh
 java -jar deep.jar
 ```
-1. Run it from the command line:
+1. Run it from the command line.
 _The first time it is executed it will create a deep.ini (in the same path as the deep.jar) to setup the paths to jars._
 2. Edit the deep.ini with the paths to the jar of the project [source] and the library [library]. The namespace is the 
 threshold from were it search the class to be matched into the source project (e.g. org.apache.commons.logging).
