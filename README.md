@@ -36,6 +36,7 @@ The partial results are this proportions:
 ### screens
 Results:
 ![alt text](https://dl.dropboxusercontent.com/u/13410677/deep/img/dep-ratio-scr.jpg "Dependency ratio")
+
 Library profile:
 ![alt text](https://dl.dropboxusercontent.com/u/13410677/deep/img/lib-profile-scr.jpg "Library profile")
 
