@@ -32,7 +32,8 @@ The partial results are this proportions:
 * total of referenced *interfaces* / total of public *interfaces* available (C)
 * total of referenced *members* / total of public *members* available (D)
 
-###### The Dependency Ratio is: `( A + B + C + D ) / 4`
+###### The Dependency Ratio(*) is: `( A + B + C + D ) / 4`
+based on [this] work by Robert Martin
 
 ### screens
 Screens of [**hibernate-core-4.3.10.Final.jar** -> **dom4j-1.6.1.jar**] analysis
@@ -68,3 +69,4 @@ Questions, issues or suggestions are welcome at `aguero.martin@gmail.com`
 
 [here]:http://bit.ly/deep-jar
 [Universidad de Palermo]: http://www.palermo.edu
+[this]:http://www.objectmentor.com/resources/articles/oodmetrc.pdf
