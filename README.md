@@ -5,7 +5,7 @@ This software reads the byte code of a JAR file and calculates a degree of depen
 It is a measure that can be used as a guide to determine a level level of coupling between two JAR files.
 
 ### version
-1.01
+1.01 (July 17 2015)
 
 ### download
 The latest compiled version can be downloaded from [here].
