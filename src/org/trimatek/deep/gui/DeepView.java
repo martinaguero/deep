@@ -28,17 +28,17 @@ public class DeepView {
 	}
 
 	public void uploadSource() {
-		if (fileSource != null) {
-			FacesMessage message = new FacesMessage("Succesful",
-					fileSource.getFileName() + " is uploaded.");
-			FacesContext.getCurrentInstance().addMessage(null, message);
-		}
+		checkUpload(getFileSource());
 	}
 
 	public void uploadTarget() {
-		if (fileTarget != null) {
+		checkUpload(getFileTarget());
+	}
+	
+	public void checkUpload(UploadedFile file){
+		if (file != null) {
 			FacesMessage message = new FacesMessage("Succesful",
-					fileTarget.getFileName() + " is uploaded.");
+					file.getFileName() + " is uploaded.");
 			FacesContext.getCurrentInstance().addMessage(null, message);
 		}
 	}
