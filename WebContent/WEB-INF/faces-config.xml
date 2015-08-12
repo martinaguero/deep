@@ -6,7 +6,12 @@
     version="2.2">
 	<managed-bean>
 		<managed-bean-name>deepBean</managed-bean-name>
-		<managed-bean-class>org.trimatek.gui.DeepBean</managed-bean-class>
+		<managed-bean-class>org.trimatek.deep.gui.DeepBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>deepView</managed-bean-name>
+		<managed-bean-class>org.trimatek.deep.gui.DeepView</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<navigation-rule>
