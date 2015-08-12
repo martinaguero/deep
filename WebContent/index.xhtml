@@ -3,22 +3,36 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:p="http://primefaces.org/ui">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 <ui:composition template="/WEB-INF/templates/layout.xhtml">
-    <ui:define name="content">
-        <h:form>
-            <h:panelGrid columns="2">
-                <h:outputText value="Name"></h:outputText>
-                <h:inputText value="#{deepBean.name}"></h:inputText>
-                <h:outputText value="Password"></h:outputText>
-                <h:inputSecret value="#{deepBean.password}"></h:inputSecret>
-            </h:panelGrid>
-            <p:spinner />  
-            <h:commandButton value="Login" action="login"></h:commandButton>
-        </h:form>
-    </ui:define>
+	<ui:define name="content">
+		<h:form enctype="multipart/form-data">
+			<p:growl id="messages" showDetail="true" />
+			<p:layout style="max-height:190px;min-height:190px;">
+				<p:layoutUnit header="Source JAR" size="50%" position="west">
+					<h:panelGrid columns="2">
+						<p:fileUpload value="#{deepView.fileSource}" mode="simple"
+							skinSimple="true" label="Browse" />
+						<p:commandButton value="Upload" ajax="false"
+							actionListener="#{deepView.uploadSource}" />
+					</h:panelGrid>
+					<h:panelGrid columns="1" style="margin: 0 auto;text-align: center;">
+						<p:graphicImage value="/images/jar.jpg" rendered="#{deepView.fileSource.fileName != null}" />
+						<h:outputText value="#{deepView.fileSource.fileName}" />
+					</h:panelGrid>
+				</p:layoutUnit>
+				<p:layoutUnit header="Target JAR" size="50%" position="center">
+					<p:fileUpload value="#{deepView.fileTarget}" mode="simple"
+						skinSimple="true" label="Browse" />
+					<p:commandButton value="Upload" ajax="false"
+						actionListener="#{deepView.uploadTarget}" />
+					<h:outputText value="#{deepView.fileTarget.fileName}" />
+				</p:layoutUnit>
+			</p:layout>
+		</h:form>
+	</ui:define>
 </ui:composition>
 </html>
