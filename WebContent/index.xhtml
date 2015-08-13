@@ -21,12 +21,12 @@
 					</h:panelGrid>
 					<h:panelGrid columns="1" style="margin: 0 auto;text-align: center;">
 						<p:graphicImage value="/images/jar.jpg"
-							rendered="#{deepView.source.fileName != null}" />
-						<h:outputText value="#{deepView.source.fileName}" />
+							rendered="#{deepView.source.name != null}" />
+						<h:outputText value="#{deepView.source.name}" />
 					</h:panelGrid>
 				</p:layoutUnit>
-				<p:layoutUnit size="4%" position="center" visible="false">
-					<p:graphicImage value="/images/jar.jpg" />
+				<p:layoutUnit size="4%" position="center" visible="true">
+					<p:commandButton value="Start" id="start" actionListener="#{deepView.start}" update="output" icon="ui-icon-disk" />
 				</p:layoutUnit>
 				<p:layoutUnit header="Target JAR" size="48%" position="east">
 					<h:panelGrid columns="2">
@@ -37,11 +37,12 @@
 					</h:panelGrid>
 					<h:panelGrid columns="1" style="margin: 0 auto;text-align: center;">
 						<p:graphicImage value="/images/jar.jpg"
-							rendered="#{deepView.target.fileName != null}" />
-						<h:outputText value="#{deepView.target.fileName}" />
+							rendered="#{deepView.target.name != null}" />
+						<h:outputText value="#{deepView.target.name}" />
 					</h:panelGrid>
 				</p:layoutUnit>
 			</p:layout>
+			<p:inputTextarea id="output" scrollHeight="10" rows="15" cols="50" value="#{deepView.output}" readonly="true" />
 		</h:form>
 	</ui:define>
 </ui:composition>

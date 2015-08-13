@@ -9,6 +9,7 @@ public class TreeUtils {
 		for (TreeNode treeNode : depTree) {
 			String indent = createIndent(treeNode.getLevel());
 			System.out.println(indent + treeNode.data);
+			sb.append(indent + treeNode.data + "\r");
 		}
 		return sb.toString();
 	}
