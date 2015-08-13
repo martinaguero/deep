@@ -8,6 +8,7 @@ import org.antlr.v4.runtime.ANTLRFileStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.Token;
+import org.primefaces.model.UploadedFile;
 import org.trimatek.deep.lexer.JavaLexer;
 import org.trimatek.deep.model.ClassProfile;
 
@@ -36,6 +37,16 @@ public class FileUtils {
 		}
 
 		return null;
+	}
+
+	public static boolean hasExtension(UploadedFile file, String[] extensions) {
+		String fileExt = file.getFileName().substring(
+				file.getFileName().lastIndexOf(".") + 1);
+		for (String ext : extensions) {
+			if (fileExt.equals(ext))
+				return true;
+		}
+		return false;
 	}
 
 }

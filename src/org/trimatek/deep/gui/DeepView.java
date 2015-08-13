@@ -6,7 +6,9 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
+import org.trimatek.deep.utils.FileUtils;
 import org.primefaces.model.UploadedFile;
+import org.trimatek.deep.utils.Constants;
 
 @ManagedBean
 public class DeepView {
@@ -60,11 +62,24 @@ public class DeepView {
 
 	public void checkUpload(UploadedFile file, Field field)
 			throws IllegalArgumentException, IllegalAccessException {
+		FacesMessage message = null;
 		if (file != null) {
-			field.set(this, file);
-			FacesMessage message = new FacesMessage("Succesful",
-					file.getFileName() + " is uploaded.");
-			FacesContext.getCurrentInstance().addMessage(null, message);
+			long size = file.getSize();
+			if (FileUtils.hasExtension(file, Constants.file_extensions)) {
+				if (size <= Constants.file_max_size) {
+					field.set(this, file);
+					message = new FacesMessage("Succesful", file.getFileName()
+							+ " is uploaded");
+				} else {
+					message = new FacesMessage("Error",
+							"File size exceeds maximum of "
+									+ Constants.file_max_size + " bytes");
+				}
+			} else {
+				message = new FacesMessage("Error",
+						"File extension is not JAR o ZIP");
+			}
 		}
+		FacesContext.getCurrentInstance().addMessage(null, message);
 	}
 }
