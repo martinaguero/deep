@@ -21,8 +21,8 @@
 					</h:panelGrid>
 					<h:panelGrid columns="1" style="margin: 0 auto;text-align: center;">
 						<p:graphicImage value="/images/jar.jpg"
-							rendered="#{deepView.fileSource.fileName != null}" />
-						<h:outputText value="#{deepView.fileSource.fileName}" />
+							rendered="#{deepView.source.fileName != null}" />
+						<h:outputText value="#{deepView.source.fileName}" />
 					</h:panelGrid>
 				</p:layoutUnit>
 				<p:layoutUnit size="4%" position="center" visible="false">
@@ -37,8 +37,8 @@
 					</h:panelGrid>
 					<h:panelGrid columns="1" style="margin: 0 auto;text-align: center;">
 						<p:graphicImage value="/images/jar.jpg"
-							rendered="#{deepView.fileTarget.fileName != null}" />
-						<h:outputText value="#{deepView.fileTarget.fileName}" />
+							rendered="#{deepView.target.fileName != null}" />
+						<h:outputText value="#{deepView.target.fileName}" />
 					</h:panelGrid>
 				</p:layoutUnit>
 			</p:layout>
