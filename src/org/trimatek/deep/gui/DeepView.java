@@ -5,26 +5,17 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
-import java.util.Set;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
-import org.apache.commons.collections4.MultiMap;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.primefaces.model.UploadedFile;
-import org.trimatek.deep.model.ClassProfile;
-import org.trimatek.deep.model.TargetProfile;
-import org.trimatek.deep.model.TreeNode;
-import org.trimatek.deep.service.CalculatorService;
 import org.trimatek.deep.service.DeepService;
-import org.trimatek.deep.service.TargetService;
 import org.trimatek.deep.utils.Constants;
 import org.trimatek.deep.utils.FileUtils;
-import org.trimatek.deep.utils.TreeUtils;
-import org.trimatek.deep.utils.Utils;
 
 @ManagedBean
 public class DeepView {
@@ -32,8 +23,23 @@ public class DeepView {
 	public File source;
 	private UploadedFile fileTarget;
 	public File target;
+	public DeepService ds = new DeepService();
 	private String output;
-	
+	private String totalClasses;
+
+	public String getTotalClasses() {
+		if (totalClasses == null) {
+			if (ds.getTargetProfile() != null) {
+				totalClasses = ds.getTargetProfile().getTotalClasses();
+			}
+		}
+		return totalClasses;
+	}
+
+	public void setTotalClasses(String totalClasses) {
+		this.totalClasses = totalClasses;
+	}
+
 	public String getOutput() {
 		return output;
 	}
@@ -111,31 +117,7 @@ public class DeepView {
 	}
 
 	public void start(ActionEvent actionEvent) throws Exception {
-		StringBuffer sb = new StringBuffer();
-		/* Target */
-		TargetService targetService = new TargetService();
-		TargetProfile target = targetService.loadTargetProfile(
-				this.target.getAbsolutePath(), "org.trimatek");
-		sb.append(target.toString());
-		/* Source -> Target */
-		sb.append("\nStart of [" + this.source.getName() + " -> " + target.getJarName()
-				+ "] analysis");
-		sb.append("\nPlease wait");
-		MultiMap<String, ClassProfile> depMap = Utils.findRelations(
-				this.source.getAbsolutePath(), target);
-		Set<ClassProfile> uniques = Utils.toUniquesClassProfiles(depMap);
-		sb.append("\n**Quick survey result:**");
-		sb.append("Total of referenced classes(concrete,abstract,interfaces) by "
-						+ this.source.getName() + ": " + uniques.size() + "\n");
-		/* Tree build */
-		sb.append("Building dependencies tree\nPlease wait");
-		TreeNode<?> depTree = Utils.buildDepTree(depMap, this.source.getAbsolutePath());
-		sb.append("\n\n**Deep survey:**");
-		sb.append(TreeUtils.printTree(depTree));
-		/* Calculate result */
-		CalculatorService cs = new CalculatorService();
-		sb.append(cs.calcDepFactor(target, depTree, uniques.size()).toString());
-		output = sb.toString();
+		output = ds.start(source, target);
 	}
 
 	public void toFile(UploadedFile uploaded, Field field)

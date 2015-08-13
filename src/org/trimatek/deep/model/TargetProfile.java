@@ -15,9 +15,9 @@ public class TargetProfile {
 		this.NAMESPACE = NAMESPACE;
 		this.JARPATH = jarPath;
 	}
-	
-	public String getJarName(){
-		return JARPATH.substring(JARPATH.lastIndexOf("\\")+1);
+
+	public String getJarName() {
+		return JARPATH.substring(JARPATH.lastIndexOf("\\") + 1);
 	}
 
 	public Integer getTotalPublicMembers() {
@@ -119,13 +119,17 @@ public class TargetProfile {
 		StringBuffer sb = new StringBuffer();
 		sb.append("\n**Library profile**");
 		sb.append("\n" + getJarName() + "\n");
-		sb.append("Total of public class files: " + getClasses().size() + "\n");
+		sb.append("Total of public class files: " + getTotalClasses() + "\n");
 		sb.append("Total of public concrete classes: " + getClassCount() + "\n");
 		sb.append("Total of public abstract classes: " + getAbstractCount()
 				+ "\n");
 		sb.append("Total of public interfaces: " + getInterfacesCount() + "\n");
 		sb.append("Public fields and methods: " + getTotalPublicMembers());
 		return sb.toString();
+	}
+
+	public String getTotalClasses() {
+		return "" + getClasses().size();
 	}
 
 }
