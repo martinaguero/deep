@@ -54,11 +54,28 @@
 			</p:layout>
 
 			<p:commandButton value="Start" id="start"
-				actionListener="#{deepView.start}" update="library,tree"
-				icon="ui-icon-disk" />
+				actionListener="#{deepView.start}"
+				update="library,tree,ratios,output" icon="ui-icon-disk" />
 
 			<p:layout style="max-height:250px;min-height:250px;">
 				<p:layoutUnit size="48%" position="west">
+					<p:panelGrid id="ratios" columns="2">
+						<f:facet name="header">
+							<h:outputText value="Results:" />
+						</f:facet>
+						<h:outputText value="Total classes ratio:" />
+						<h:outputText value="#{deepView.allResults.result.totRate}" />
+						<h:outputText value="Concrete ratio:" />
+						<h:outputText value="#{deepView.allResults.result.conRate}" />
+						<h:outputText value="Abstract ratio:" />
+						<h:outputText value="#{deepView.allResults.result.absRate}" />
+						<h:outputText value="Interfaces ratio:" />
+						<h:outputText value="#{deepView.allResults.result.intRate}" />
+						<h:outputText value="Members ratio:" />
+						<h:outputText value="#{deepView.allResults.result.memRate}" />
+						<h:outputText value=">>> Dependency Ratio:" />
+						<h:outputText value="#{deepView.allResults.result.depRate}" />
+					</p:panelGrid>
 				</p:layoutUnit>
 				<p:layoutUnit size="4%" position="center" visible="false">
 
@@ -86,13 +103,35 @@
 				</p:layoutUnit>
 			</p:layout>
 
-			<p:tree id="tree" value="#{deepView.allResults.dependencyTree}"
-				var="node" orientation="horizontal">
-				<p:treeNode>
-					<h:outputText value="#{node}" />
-				</p:treeNode>
-			</p:tree>
+			<p:accordionPanel id="tree">
+				<p:tab title="Dependency Tree" closable="false">
+					<p:tree value="#{deepView.allResults.dependencyTree}"
+						var="node" orientation="horizontal">
+						<p:treeNode>
+							<h:outputText value="#{node}" />
+						</p:treeNode>
+					</p:tree>
+				</p:tab>
+				<p:tab title="Tree Summary" >
+					<p:panelGrid id="treesummary" columns="2">
+						<h:outputText value="Referenced classes:" />
+						<h:outputText value="#{deepView.allResults.result.classes}" />
+						<h:outputText value="Concrete classes:" />
+						<h:outputText value="#{deepView.allResults.result.concrete}" />
+						<h:outputText value="Abstract classes:" />
+						<h:outputText value="#{deepView.allResults.result.abstracts}" />
+						<h:outputText value="Interfaces:" />
+						<h:outputText value="#{deepView.allResults.result.interfaces}" />
+						<h:outputText value="Fields:" />
+						<h:outputText value="#{deepView.allResults.result.fields}" />
+						<h:outputText value="Methods:" />
+						<h:outputText value="#{deepView.allResults.result.methods}" />
+					</p:panelGrid>
+				</p:tab>
+			</p:accordionPanel>
 
+			<p:inputTextarea id="output" scrollHeight="10" rows="15" cols="50"
+				value="#{deepView.allResults.formattedResults}" readonly="true" />
 		</h:form>
 	</ui:define>
 </ui:composition>

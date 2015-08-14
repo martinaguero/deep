@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.collections4.MultiMap;
-import org.primefaces.component.api.UITree;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 import org.trimatek.deep.model.ClassProfile;
@@ -13,18 +12,17 @@ import org.trimatek.deep.model.Type;
 import org.trimatek.deep.service.DecompilerService;
 import org.trimatek.deep.service.ParserService;
 
-
 public class TreeUtils {
-	
+
 	private static DecompilerService dc = new DecompilerService();
 	private static ParserService ps = new ParserService();
 
 	public static TreeNode buildDepTree(
 			MultiMap<String, ClassProfile> sourceTargetmap, String targetJarPath)
 			throws Exception {
-				
+
 		TreeNode root = new DefaultTreeNode(JarUtils.getJarName(targetJarPath)
-				+ ".jar",null);
+				+ ".jar", null);
 		TreeNode classNode;
 		String sourceCode;
 		List<String> statements;
@@ -39,16 +37,15 @@ public class TreeUtils {
 			statements = ps.parseStatementsExpressions(sourceCode);
 			getNodes(classes, statements, classNode);
 		}
-		
+
 		return root;
 	}
-	
+
 	private static TreeNode getNodes(List<ClassProfile> classes,
 			List<String> statements, TreeNode root) {
 		TreeNode classNode;
-		TreeNode memberNode;
 		for (ClassProfile cp : Utils.toUniques(classes)) {
-			classNode = new DefaultTreeNode(cp.getClassName(),root);
+			classNode = new DefaultTreeNode(cp.getClassName(), root);
 			for (String statement : statements) {
 				for (String field : cp.getFields()) {
 					addMember(statement, field, Type.field, classNode);
@@ -64,13 +61,22 @@ public class TreeUtils {
 	private static TreeNode addMember(String statement, String field,
 			Type type, TreeNode classNode) {
 		if (statement.contains(field)) {
-			//if (classNode.findTreeNode(field + type.getSymbol()) == null) {
-			//	classNode.addChild(field + type.getSymbol());
-			//}
-			TreeNode node = new DefaultTreeNode(field + type.getSymbol(),classNode);
+			if (findNode(classNode, field + type.getSymbol()) == null) {
+				TreeNode node = new DefaultTreeNode(field + type.getSymbol(),
+						classNode);
+			}
 		}
 		return classNode;
 	}
 
-	
+	private static TreeNode findNode(TreeNode node, String data) {
+		List<TreeNode> subChild = node.getChildren();
+		for (TreeNode treeNode : subChild) {
+			if (treeNode.getData().equals(data)) {
+				return treeNode;
+			}
+		}
+		return null;
+	}
+
 }

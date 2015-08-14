@@ -3,30 +3,35 @@ package org.trimatek.deep.model;
 import java.text.DecimalFormat;
 
 public class Result {
-	
+
 	public int classes, concrete, abstracts, interfaces, methods, fields;
 	public int tarClasses, tarConcrete, tarAbstract, tarIntefaces, tarMembers;
 	private float totRate, conRate, absRate, intRate, memRate, depRate;
 	private DecimalFormat f = new DecimalFormat("#.####");
-	
-	public Result(TargetProfile target){
+
+	public Result(TargetProfile target) {
 		tarClasses = target.getClasses().size();
 		tarConcrete = target.getClassCount();
 		tarAbstract = target.getAbstractCount();
 		tarIntefaces = target.getInterfacesCount();
 		tarMembers = target.getTotalPublicMembers();
 	}
-	
-	private void updateResults(){
-		if(tarClasses!=0)totRate = classes/(float)tarClasses;
-		if(tarConcrete!=0)conRate = concrete/(float)tarConcrete;
-		if(tarAbstract!=0)absRate = abstracts/(float)tarAbstract;
-		if(tarIntefaces!=0)intRate = interfaces/(float)tarIntefaces;
-		if(tarMembers!=0)memRate = (fields+methods)/(float)tarMembers;
-		depRate = (conRate + absRate + intRate + memRate)/4;
+
+	private void updateResults() {
+		if (tarClasses != 0)
+			totRate = classes / (float) tarClasses;
+		if (tarConcrete != 0)
+			conRate = concrete / (float) tarConcrete;
+		if (tarAbstract != 0)
+			absRate = abstracts / (float) tarAbstract;
+		if (tarIntefaces != 0)
+			intRate = interfaces / (float) tarIntefaces;
+		if (tarMembers != 0)
+			memRate = (fields + methods) / (float) tarMembers;
+		depRate = (conRate + absRate + intRate + memRate) / 4;
 	}
-	
-	public String toString(){
+
+	public String toString() {
 		updateResults();
 		StringBuffer sb = new StringBuffer();
 		sb.append("Tree summary:" + "\n");
@@ -46,6 +51,30 @@ public class Result {
 		sb.append(">>>> Dependency ratio: " + getDepRate());
 		sb.append("\n");
 		return sb.toString();
+	}
+
+	public String getClasses() {
+		return classes + "";
+	}
+
+	public String getConcrete() {
+		return concrete + "";
+	}
+
+	public String getAbstracts() {
+		return abstracts + "";
+	}
+
+	public String getInterfaces() {
+		return interfaces + "";
+	}
+
+	public String getMethods() {
+		return methods + "";
+	}
+
+	public String getFields() {
+		return fields + "";
 	}
 
 	public String getTotRate() {
@@ -71,5 +100,5 @@ public class Result {
 	public String getDepRate() {
 		return f.format(depRate);
 	}
-	
+
 }
