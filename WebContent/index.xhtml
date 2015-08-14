@@ -20,7 +20,10 @@
 			</h:panelGrid>
 		</p:dialog>
 		<h:form enctype="multipart/form-data">
-			<p:growl id="messages" showDetail="true" />
+			<p:scrollPanel mode="native" style="height: 65px; ">
+				<p:messages id="messages" showDetail="true" autoUpdate="true"
+					closable="true" />
+			</p:scrollPanel>
 			<p:layout style="max-height:190px;min-height:190px;">
 				<p:layoutUnit header="Source JAR" size="48%" position="west">
 					<h:panelGrid columns="2">
@@ -29,14 +32,14 @@
 						<p:commandButton value="Upload" ajax="false"
 							actionListener="#{deepView.uploadSource}" />
 					</h:panelGrid>
-					<h:panelGrid columns="1" style="margin: 0 auto;text-align: center;">
+					<h:panelGrid id="source" columns="1" style="margin: 0 auto;text-align: center;">
 						<p:graphicImage value="/images/jar.jpg"
 							rendered="#{deepView.source.name != null}" />
 						<h:outputText value="#{deepView.source.name}" />
 					</h:panelGrid>
 				</p:layoutUnit>
-				<p:layoutUnit size="4%" position="center" visible="false">
-
+				<p:layoutUnit style="border: 0;" size="4%" position="center" visible="false" >
+				<p:outputLabel style="font-weight:bold">>></p:outputLabel>
 				</p:layoutUnit>
 				<p:layoutUnit header="Library JAR" size="48%" position="east">
 					<h:panelGrid columns="2">
@@ -45,7 +48,7 @@
 						<p:commandButton value="Upload" ajax="false"
 							actionListener="#{deepView.uploadTarget}" />
 					</h:panelGrid>
-					<h:panelGrid columns="1" style="margin: 0 auto;text-align: center;">
+					<h:panelGrid id="target" columns="1" style="margin: 0 auto;text-align: center;">
 						<p:graphicImage value="/images/jar.jpg"
 							rendered="#{deepView.target.name != null}" />
 						<h:outputText value="#{deepView.target.name}" />
@@ -53,15 +56,21 @@
 				</p:layoutUnit>
 			</p:layout>
 
-			<p:commandButton value="Start" id="start"
-				actionListener="#{deepView.start}"
-				update="library,tree,ratios,output" icon="ui-icon-disk" />
+			<h:panelGrid columns="2">
+				<p:commandButton value="Start" id="start"
+					actionListener="#{deepView.start}" update="library,tree,ratios"
+					icon="ui-icon-play" />
+				<p:commandButton value="Reset" id="reset"
+					actionListener="#{deepView.reset}" update="library,tree,ratios,source,target"
+					icon="ui-icon-arrowrefresh-1-e" />
+			</h:panelGrid>
+			<p:spacer height="10px" />
 
 			<p:layout style="max-height:250px;min-height:250px;">
 				<p:layoutUnit size="48%" position="west">
 					<p:panelGrid id="ratios" columns="2">
 						<f:facet name="header">
-							<h:outputText value="Results:" />
+							<h:outputText value="Analysis Results:" />
 						</f:facet>
 						<h:outputText value="Total classes ratio:" />
 						<h:outputText value="#{deepView.allResults.result.totRate}" />
@@ -73,8 +82,8 @@
 						<h:outputText value="#{deepView.allResults.result.intRate}" />
 						<h:outputText value="Members ratio:" />
 						<h:outputText value="#{deepView.allResults.result.memRate}" />
-						<h:outputText value=">>> Dependency Ratio:" />
-						<h:outputText value="#{deepView.allResults.result.depRate}" />
+						<h:outputText style="font-weight:bold" value="Dependency Ratio:" />
+						<h:outputText style="font-weight:bold" value="#{deepView.allResults.result.depRate}" />
 					</p:panelGrid>
 				</p:layoutUnit>
 				<p:layoutUnit size="4%" position="center" visible="false">
@@ -102,17 +111,17 @@
 
 				</p:layoutUnit>
 			</p:layout>
-
+			<p:spacer height="5px" />
 			<p:accordionPanel id="tree">
 				<p:tab title="Dependency Tree" closable="false">
-					<p:tree value="#{deepView.allResults.dependencyTree}"
-						var="node" orientation="horizontal">
+					<p:tree value="#{deepView.allResults.dependencyTree}" var="node"
+						orientation="horizontal">
 						<p:treeNode>
 							<h:outputText value="#{node}" />
 						</p:treeNode>
 					</p:tree>
 				</p:tab>
-				<p:tab title="Tree Summary" >
+				<p:tab title="Tree Summary">
 					<p:panelGrid id="treesummary" columns="2">
 						<h:outputText value="Referenced classes:" />
 						<h:outputText value="#{deepView.allResults.result.classes}" />
@@ -129,9 +138,7 @@
 					</p:panelGrid>
 				</p:tab>
 			</p:accordionPanel>
-
-			<p:inputTextarea id="output" scrollHeight="10" rows="15" cols="50"
-				value="#{deepView.allResults.formattedResults}" readonly="true" />
+			<p:spacer />
 		</h:form>
 	</ui:define>
 </ui:composition>

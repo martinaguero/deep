@@ -1,6 +1,7 @@
 package org.trimatek.deep.gui;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,6 +27,13 @@ public class DeepView {
 	public File target;
 	public DeepService ds = new DeepService();
 	private AllResults allResults;
+
+	public DeepView() {
+		FacesContext.getCurrentInstance().addMessage(
+				null,
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "Welcome",
+						"Please load JAR files."));
+	}
 
 	public UploadedFile getFileSource() {
 		return fileSource;
@@ -88,23 +96,57 @@ public class DeepView {
 			if (FileUtils.hasExtension(file, Constants.file_extensions)) {
 				if (size <= Constants.file_max_size) {
 					toFile(file, field);
-					message = new FacesMessage("Succesful", file.getFileName()
+					message = new FacesMessage("Successful", file.getFileName()
 							+ " is uploaded");
 				} else {
-					message = new FacesMessage("Error",
-							"File size exceeds maximum of "
+					message = new FacesMessage(FacesMessage.SEVERITY_WARN,
+							"Warning:", "File size exceeds maximum of "
 									+ Constants.file_max_size + " bytes");
 				}
 			} else {
-				message = new FacesMessage("Error",
-						"File extension is not JAR o ZIP");
+				message = new FacesMessage(FacesMessage.SEVERITY_WARN,
+						"Warning:", "File extension is not JAR o ZIP");
 			}
 		}
 		FacesContext.getCurrentInstance().addMessage(null, message);
 	}
 
 	public void start(ActionEvent actionEvent) throws Exception {
-		allResults = ds.start(source, target);
+		try {
+			allResults = ds.start(source, target);
+			deleteFiles();
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_INFO,
+							"Analysis completed", ""));
+		} catch (FileNotFoundException e) {
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error:",
+							"Files are not available, please reload both"));
+		} catch (NullPointerException e) {
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error:",
+							"Files are not available, please reload both"));
+		}
+
+	}
+
+	public void reset(ActionEvent actionEvent) {
+		allResults = null;
+		deleteFiles();
+	}
+
+	private void deleteFiles() {
+		if (source != null && source.exists())
+			source.delete();
+		source = null;
+		if (target != null && target.exists())
+			target.delete();
+		target = null;
+		fileSource = null;
+		fileTarget = null;
 	}
 
 	public void toFile(UploadedFile uploaded, Field field)
@@ -120,5 +162,9 @@ public class DeepView {
 			IOUtils.closeQuietly(output);
 		}
 		field.set(this, file);
+	}
+
+	public String getAppVersion() {
+		return Constants.version + "";
 	}
 }
