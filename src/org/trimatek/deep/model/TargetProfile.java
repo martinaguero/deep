@@ -127,9 +127,18 @@ public class TargetProfile {
 		sb.append("Public fields and methods: " + getTotalPublicMembers());
 		return sb.toString();
 	}
+	
+	public AllResults loadResults(AllResults allResults){
+		allResults.setTargetClassFiles(getTotalClasses());
+		allResults.setTargetConcrete(getClassCount());
+		allResults.setTargetAbstract(getAbstractCount());
+		allResults.setTargetInterfaces(getInterfacesCount());
+		allResults.setTargetMembers(getTotalPublicMembers());
+		return allResults;
+	}
 
-	public String getTotalClasses() {
-		return "" + getClasses().size();
+	public int getTotalClasses() {
+		return getClasses().size();
 	}
 
 }

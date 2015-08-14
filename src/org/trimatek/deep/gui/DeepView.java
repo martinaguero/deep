@@ -13,6 +13,7 @@ import javax.faces.event.ActionEvent;
 
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.primefaces.model.UploadedFile;
+import org.trimatek.deep.model.AllResults;
 import org.trimatek.deep.service.DeepService;
 import org.trimatek.deep.utils.Constants;
 import org.trimatek.deep.utils.FileUtils;
@@ -24,29 +25,7 @@ public class DeepView {
 	private UploadedFile fileTarget;
 	public File target;
 	public DeepService ds = new DeepService();
-	private String output;
-	private String totalClasses;
-
-	public String getTotalClasses() {
-		if (totalClasses == null) {
-			if (ds.getTargetProfile() != null) {
-				totalClasses = ds.getTargetProfile().getTotalClasses();
-			}
-		}
-		return totalClasses;
-	}
-
-	public void setTotalClasses(String totalClasses) {
-		this.totalClasses = totalClasses;
-	}
-
-	public String getOutput() {
-		return output;
-	}
-
-	public void setOutput(String output) {
-		this.output = output;
-	}
+	private AllResults allResults;
 
 	public UploadedFile getFileSource() {
 		return fileSource;
@@ -78,6 +57,14 @@ public class DeepView {
 
 	public void setTarget(File target) {
 		this.target = target;
+	}
+
+	public AllResults getAllResults() {
+		return allResults;
+	}
+
+	public void setAllResults(AllResults allResults) {
+		this.allResults = allResults;
 	}
 
 	public void uploadSource() throws NoSuchFieldException, SecurityException,
@@ -117,7 +104,7 @@ public class DeepView {
 	}
 
 	public void start(ActionEvent actionEvent) throws Exception {
-		output = ds.start(source, target);
+		allResults = ds.start(source, target);
 	}
 
 	public void toFile(UploadedFile uploaded, Field field)

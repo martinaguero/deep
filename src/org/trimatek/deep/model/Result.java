@@ -37,15 +37,39 @@ public class Result {
 		sb.append("Referenced fields: " + fields + "\n");
 		sb.append("Referenced methods: " + methods + "\n");
 		sb.append("\n**Results**" + "\n");
-		sb.append("Total classes ratio: " + f.format(totRate) + "\n");
-		sb.append(">>Concrete ratio: " + f.format(conRate) + "\n");
-		sb.append(">>Abstract ratio: " + f.format(absRate) + "\n");
-		sb.append(">>Interfaces ratio: " + f.format(intRate) + "\n");
-		sb.append(">>Members ratio: " + f.format(memRate) + "\n");
+		sb.append("Total classes ratio: " + getTotRate() + "\n");
+		sb.append(">>Concrete ratio: " + getConRate() + "\n");
+		sb.append(">>Abstract ratio: " + getAbsRate() + "\n");
+		sb.append(">>Interfaces ratio: " + getIntRate() + "\n");
+		sb.append(">>Members ratio: " + getMemRate() + "\n");
 		sb.append("\n");
-		sb.append(">>>> Dependency ratio: " + f.format(depRate));
+		sb.append(">>>> Dependency ratio: " + getDepRate());
 		sb.append("\n");
 		return sb.toString();
+	}
+
+	public String getTotRate() {
+		return f.format(totRate);
+	}
+
+	public String getConRate() {
+		return f.format(conRate);
+	}
+
+	public String getAbsRate() {
+		return f.format(absRate);
+	}
+
+	public String getIntRate() {
+		return f.format(intRate);
+	}
+
+	public String getMemRate() {
+		return f.format(memRate);
+	}
+
+	public String getDepRate() {
+		return f.format(depRate);
 	}
 	
 }

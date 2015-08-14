@@ -63,13 +63,13 @@
 							<h:outputText value="Public resources:" />
 						</f:facet>
 				<h:outputText value="Class files:" />
-						<h:outputText value="#{deepView.totalClasses}" />
+						<h:outputText value="#{deepView.allResults.targetClassFiles}" />
 					</p:panelGrid>
 				</p:layoutUnit>
 			</p:layout>
 
 			<p:inputTextarea id="output" scrollHeight="10" rows="15" cols="50"
-				value="#{deepView.output}" readonly="true" />
+				value="#{deepView.allResults.formattedResults}" readonly="true" />
 
 		</h:form>
 	</ui:define>
