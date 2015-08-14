@@ -34,7 +34,7 @@ public class Utils {
 		return uniques;
 	}
 
-	private static Set<ClassProfile> toUniques(List<ClassProfile> classes) {
+	static Set<ClassProfile> toUniques(List<ClassProfile> classes) {
 		Set<ClassProfile> uniques = new HashSet<ClassProfile>();
 		for (ClassProfile cp : classes) {
 			uniques.add(cp);
@@ -112,6 +112,24 @@ public class Utils {
 
 	public static String getSlash() {
 		return System.getProperty("os.name").startsWith("W") ? "\\" : "/";
+	}
+	
+	public static String printTree(TreeNode<?> depTree){
+		StringBuffer sb = new StringBuffer();
+		for (TreeNode treeNode : depTree) {
+			String indent = createIndent(treeNode.getLevel());
+			System.out.println(indent + treeNode.data);
+			sb.append(indent + treeNode.data + "\r");
+		}
+		return sb.toString();
+	}
+	
+	private static String createIndent(int depth) {
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < depth; i++) {
+			sb.append("  ");
+		}
+		return sb.toString();
 	}
 
 }

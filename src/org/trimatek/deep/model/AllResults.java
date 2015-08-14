@@ -1,5 +1,7 @@
 package org.trimatek.deep.model;
 
+import org.primefaces.model.TreeNode;
+
 public class AllResults {
 
 	private int targetClassFiles;

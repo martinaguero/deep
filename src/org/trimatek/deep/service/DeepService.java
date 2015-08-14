@@ -30,7 +30,7 @@ public class DeepService {
 		TargetService targetService = new TargetService();
 		AllResults allResults = new AllResults();
 		targetProfile = targetService.loadTargetProfile(
-				targetFile.getAbsolutePath(), "org.trimatek");
+				targetFile.getAbsolutePath(), "org");
 		allResults = targetProfile.loadResults(allResults);
 		sb.append(targetProfile.toString());
 		/* Source -> Target */
@@ -48,9 +48,11 @@ public class DeepService {
 		sb.append("Building dependencies tree\nPlease wait");
 		TreeNode<?> depTree = Utils.buildDepTree(depMap,
 				sourceFile.getAbsolutePath());
-		allResults.setDependencyTree(depTree);
+		org.primefaces.model.TreeNode primeTree = TreeUtils.buildDepTree(depMap,
+				sourceFile.getAbsolutePath());
+		allResults.setDependencyTree(primeTree);
 		sb.append("\n\n**Deep survey:**");
-		sb.append(TreeUtils.printTree(depTree));
+		sb.append(Utils.printTree(depTree));
 		/* Calculate result */
 		CalculatorService cs = new CalculatorService();
 		Result result = cs.calcDepFactor(targetProfile, depTree, uniques.size()); 

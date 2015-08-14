@@ -71,7 +71,7 @@ public class Deep {
 		System.out.println("Building dependencies tree\nPlease wait");
 		TreeNode<?> depTree = Utils.buildDepTree(depMap, sourceJarPath);
 		System.out.println("\n\n**Deep survey:**");
-		System.out.println(TreeUtils.printTree(depTree));
+		System.out.println(Utils.printTree(depTree));
 
 		/* Calculate result */
 		CalculatorService cs = new CalculatorService();
