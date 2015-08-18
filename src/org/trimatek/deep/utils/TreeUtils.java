@@ -1,8 +1,13 @@
 package org.trimatek.deep.utils;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 
 import org.apache.commons.collections4.MultiMap;
 import org.primefaces.model.DefaultTreeNode;
@@ -77,6 +82,26 @@ public class TreeUtils {
 			}
 		}
 		return null;
+	}
+
+	public static TreeNode buildTree(File file) throws IOException {
+		TreeNode root = new DefaultTreeNode(file.getName(), null);
+		JarFile jar = new JarFile(file);
+		Enumeration<JarEntry> entries = jar.entries();
+		root = visitAllDirs(entries, root);
+		jar.close();
+		return root;
+	}
+
+	public static TreeNode visitAllDirs(Enumeration<JarEntry> entries,
+			TreeNode root) {
+		while (entries.hasMoreElements()) {
+			JarEntry je = entries.nextElement();
+			if (je.isDirectory()) {
+				new DefaultTreeNode(je.getName(), root);
+			}
+		}
+		return root;
 	}
 
 }

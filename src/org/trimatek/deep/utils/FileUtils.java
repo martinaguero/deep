@@ -2,7 +2,11 @@ package org.trimatek.deep.utils;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 
 import org.antlr.v4.runtime.ANTLRFileStream;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -47,6 +51,18 @@ public class FileUtils {
 				return true;
 		}
 		return false;
+	}
+
+	public static List<String> loadDirs(File file) throws IOException {
+		List<String> dList = new ArrayList<String>();
+		Enumeration<JarEntry> entries = new JarFile(file).entries();
+		while (entries.hasMoreElements()) {
+			JarEntry je = entries.nextElement();
+			if (je.isDirectory()) {
+				dList.add(je.getName());
+			}
+		}
+		return dList;
 	}
 
 }

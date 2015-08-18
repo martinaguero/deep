@@ -13,11 +13,13 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
 import org.apache.tomcat.util.http.fileupload.IOUtils;
+import org.primefaces.model.TreeNode;
 import org.primefaces.model.UploadedFile;
 import org.trimatek.deep.model.AllResults;
 import org.trimatek.deep.service.DeepService;
 import org.trimatek.deep.utils.Constants;
 import org.trimatek.deep.utils.FileUtils;
+import org.trimatek.deep.utils.TreeUtils;
 
 @ManagedBean
 public class DeepView {
@@ -27,12 +29,43 @@ public class DeepView {
 	public File target;
 	public DeepService ds = new DeepService();
 	private AllResults allResults;
+	private TreeNode targetTree;
+	private Boolean showModal = Boolean.FALSE;
+	private TreeNode selectedDir;
 
 	public DeepView() {
+		displayWelcome();
+	}
+	
+	private void displayWelcome(){
 		FacesContext.getCurrentInstance().addMessage(
 				null,
 				new FacesMessage(FacesMessage.SEVERITY_INFO, "Welcome",
-						"Please load JAR files."));
+						"Please load JAR files (max file size 5MB)."));
+	}
+
+	public TreeNode getSelectedDir() {
+		return selectedDir;
+	}
+
+	public void setSelectedDir(TreeNode selectedDir) {
+		this.selectedDir = selectedDir;
+	}
+
+	public String getShowModal() {
+		return showModal.toString();
+	}
+
+	public void setShowModal(Boolean showModal) {
+		this.showModal = showModal;
+	}
+
+	public TreeNode getTargetTree() {
+		return targetTree;
+	}
+
+	public void setTargetTree(TreeNode targetTree) {
+		this.targetTree = targetTree;
 	}
 
 	public UploadedFile getFileSource() {
@@ -85,6 +118,10 @@ public class DeepView {
 			IllegalAccessException, NoSuchFieldException, SecurityException,
 			IOException {
 		checkUpload(getFileTarget(), this.getClass().getField("target"));
+		if (target != null) {
+			targetTree = TreeUtils.buildTree(target);
+			setShowModal(Boolean.TRUE);
+		}
 	}
 
 	public void checkUpload(UploadedFile file, Field field)
@@ -113,7 +150,8 @@ public class DeepView {
 
 	public void start(ActionEvent actionEvent) throws Exception {
 		try {
-			allResults = ds.start(source, target);
+			String threshold = getSelectedDir().getData().toString().replaceAll("/", "\\.");
+			allResults = ds.start(source, target, threshold);
 			deleteFiles();
 			FacesContext.getCurrentInstance().addMessage(
 					null,
@@ -136,6 +174,9 @@ public class DeepView {
 	public void reset(ActionEvent actionEvent) {
 		allResults = null;
 		deleteFiles();
+		setSelectedDir(null);
+		setShowModal(Boolean.FALSE);
+		displayWelcome();
 	}
 
 	private void deleteFiles() {
