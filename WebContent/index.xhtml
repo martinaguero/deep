@@ -9,7 +9,9 @@
 	xmlns:p="http://primefaces.org/ui">
 <ui:composition template="/WEB-INF/templates/layout.xhtml">
 	<ui:define name="content">
-		<h:outputStylesheet library="css" name="/resources/style.css" />
+		<f:facet name="last">
+			<h:outputStylesheet library="default" name="/resources/style.css" />
+		</f:facet>
 		<p:ajaxStatus onstart="PF('statusDialog').show()"
 			onsuccess="PF('statusDialog').hide()" />
 		<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
@@ -32,41 +34,59 @@
 						<p:commandButton value="Upload" ajax="false"
 							actionListener="#{deepView.uploadSource}" />
 					</h:panelGrid>
-					<h:panelGrid id="source" columns="1" style="margin: 0 auto;text-align: center;">
+					<h:panelGrid id="source" columns="1"
+						style="margin: 0 auto;text-align: center;">
 						<p:graphicImage value="/images/jar.jpg"
 							rendered="#{deepView.source.name != null}" />
 						<h:outputText value="#{deepView.source.name}" />
 					</h:panelGrid>
 				</p:layoutUnit>
-				<p:layoutUnit style="border: 0;" size="4%" position="center" visible="false" >
-				<p:outputLabel style="font-weight:bold">>></p:outputLabel>
+				<p:layoutUnit style="border: 0;" size="4%" position="center">
+					<p:spacer height="60" width="40" />
+					<p:graphicImage width="45" height="45" value="/images/arrow.jpg" />
 				</p:layoutUnit>
 				<p:layoutUnit header="Library JAR" size="48%" position="east">
 					<h:panelGrid columns="2">
 						<p:fileUpload value="#{deepView.fileTarget}" mode="simple"
 							skinSimple="true" label="Browse" />
 						<p:commandButton value="Upload" ajax="false"
-							actionListener="#{deepView.uploadTarget}" />
+							actionListener="#{deepView.uploadTarget}" update="threshold" />
 					</h:panelGrid>
-					<h:panelGrid id="target" columns="1" style="margin: 0 auto;text-align: center;">
+					<h:panelGrid id="target" columns="1"
+						style="margin: 0 auto;text-align: center;">
 						<p:graphicImage value="/images/jar.jpg"
 							rendered="#{deepView.target.name != null}" />
 						<h:outputText value="#{deepView.target.name}" />
 					</h:panelGrid>
 				</p:layoutUnit>
 			</p:layout>
+			<p:dialog widgetVar="threshold" header="#{deepView.target.name}"
+				modal="true" visible="#{deepView.showModal}" showEffect="scale"
+				hideEffect="scale">
+				<h:outputText value="Please set a threshold for the analysis:" />
+				<p:tree value="#{deepView.targetTree}" var="node"
+					onNodeClick="PF('threshold').hide();" selectionMode="single"
+					selection="#{deepView.selectedDir}">
+					<p:treeNode>
+						<h:outputText value="#{node}" />
+					</p:treeNode>
+				</p:tree>
+			</p:dialog>
 
-			<h:panelGrid columns="2">
-				<p:commandButton value="Start" id="start"
-					actionListener="#{deepView.start}" update="library,tree,ratios"
-					icon="ui-icon-play" />
+			<h:panelGrid columns="3">
+				<p:commandButton style="background-color:MediumTurquoise;"
+					value="Start" id="start" actionListener="#{deepView.start}"
+					update="library,tree,ratios" icon="ui-icon-play" />
 				<p:commandButton value="Reset" id="reset"
-					actionListener="#{deepView.reset}" update="library,tree,ratios,source,target"
+					actionListener="#{deepView.reset}"
+					update="library,tree,ratios,source,target"
 					icon="ui-icon-arrowrefresh-1-e" />
+				<p:commandButton value="Info" onclick="PF('info').show();"
+					icon="ui-icon-info" />
 			</h:panelGrid>
 			<p:spacer height="10px" />
 
-			<p:layout style="max-height:250px;min-height:250px;">
+			<p:layout style="max-height:252px;min-height:252px;">
 				<p:layoutUnit size="48%" position="west">
 					<p:panelGrid id="ratios" columns="2">
 						<f:facet name="header">
@@ -83,7 +103,8 @@
 						<h:outputText value="Members ratio:" />
 						<h:outputText value="#{deepView.allResults.result.memRate}" />
 						<h:outputText style="font-weight:bold" value="Dependency Ratio:" />
-						<h:outputText style="font-weight:bold" value="#{deepView.allResults.result.depRate}" />
+						<h:outputText style="font-weight:bold"
+							value="#{deepView.allResults.result.depRate}" />
 					</p:panelGrid>
 				</p:layoutUnit>
 				<p:layoutUnit size="4%" position="center" visible="false">
@@ -94,6 +115,8 @@
 						<f:facet name="header">
 							<h:outputText value="Library Quick Survey:" />
 						</f:facet>
+						<h:outputText value="Threshold:" />
+						<h:outputText value="#{deepView.selectedDir}" />
 						<h:outputText value="Class files:" />
 						<h:outputText value="#{deepView.allResults.targetClassFiles}" />
 						<h:outputText value="Concrete classes:" />
@@ -104,8 +127,7 @@
 						<h:outputText value="#{deepView.allResults.targetInterfaces}" />
 						<h:outputText value="Fields and methods:" />
 						<h:outputText value="#{deepView.allResults.targetMembers}" />
-						<h:outputText
-							value="Total of referenced classes by #{deepView.source.name} :" />
+						<h:outputText value="Total of referenced classes:" />
 						<h:outputText value="#{deepView.allResults.referencedClasses}" />
 					</p:panelGrid>
 
@@ -139,6 +161,11 @@
 				</p:tab>
 			</p:accordionPanel>
 			<p:spacer />
+			<p:dialog widgetVar="info"
+				header="readme.txt" modal="true"
+				showEffect="scale" hideEffect="scale" height="500" width="700">
+					<object type="text/html" data="./resources/readme.txt" style="width:680px;height:490px;" />
+			</p:dialog>
 		</h:form>
 	</ui:define>
 </ui:composition>
