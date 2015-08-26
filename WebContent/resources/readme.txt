@@ -1,4 +1,4 @@
-DEEP v1.01 (beta)
+DEEP v1.1 (beta)
 Java Dependencies Analysis
 
 This software reads the byte code of a JAR file and calculates a degree of 
@@ -15,19 +15,22 @@ visualization_** in a dependency tree.
 4. Finally it calculates a Dependency Ratio and outputs the results.
 
 Calculations
-The partial results are this proportions:
-* total of *referenced class files* by the source JAR / 
-	total of public *class files* available at library JAR
-* total of referenced *concrete* classes / total of public *concrete*
-	classes available (A)
-* total of referenced *abstract* classes / total of public *abstract* 
-	classes available (B)
-* total of referenced *interfaces* / total of public *interfaces* available (C)
-* total of referenced *members* / total of public *members* available (D)
+S: source JAR
+T: target JAR
+Rc: Concrete classes referenced in S
+Tc: Total of concrete public classes available in T
+Ra: Abstract classes referenced in S
+Ta: Total of abstract public classes available in T
+Ri: Interfaces referenced in S
+Ti: Total of interfaces classes available in T
+Rm: Members referenced in S
+Tm: Total of members available in T
 
-The Dependency Ratio(*) is: ( A + B + C + D ) / 4
-(*) based this work by Robert Martin: 
+The Dependency Ratio(*) is: (Rc/Tc+Ra/Ta+Ri/Ti+Rm/Tm)/4
+(*) based on the work by Robert Martin: 
 http://www.objectmentor.com/resources/articles/oodmetrc.pdf
+and Wang et al.:
+https://ece.uwaterloo.ca/~lintan/publications/dep-mtd13.pdf
 
 Technology
 * Apache BCEL 5.2
@@ -35,14 +38,7 @@ Technology
 * ANTLR 4.5
 * Procyon decompiler 0.5.29
 * ini4j 0.5.4
-* Prime Faces 5.2
-
-Author
-Martín Agüero is professor at Universidad de Palermo located in 
-Buenos Aires, Argentina
-
-Contact
-Questions, issues or suggestions are welcome at aguero.martin@gmail.com
+* PrimeFaces 5.2
 
 Source code
 https://github.com/martinaguero/deep
