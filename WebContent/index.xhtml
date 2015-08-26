@@ -69,7 +69,8 @@
 			<p:dialog widgetVar="threshold" header="#{deepView.target.name}"
 				modal="true" visible="#{deepView.showModal}" showEffect="scale"
 				hideEffect="scale">
-				<h:outputText value="Please set a threshold for the analysis:" />
+				<h:outputText style="background-color:yellow; "
+					value="Please set a threshold for the analysis:" />
 				<p:tree value="#{deepView.targetTree}" var="node"
 					onNodeClick="PF('threshold').hide();" selectionMode="single"
 					selection="#{deepView.selectedDir}">
@@ -82,65 +83,65 @@
 			<h:panelGrid columns="3">
 				<p:commandButton style="background-color:MediumTurquoise;"
 					value="Start" id="start" actionListener="#{deepView.start}"
-					update="library,tree,ratios" icon="ui-icon-play" />
+					update="results" icon="ui-icon-play" />
 				<p:commandButton value="Reset" id="reset"
-					actionListener="#{deepView.reset}"
-					update="library,tree,ratios,source,target"
+					actionListener="#{deepView.reset}" update="results,source,target"
 					icon="ui-icon-arrowrefresh-1-e" />
 				<p:commandButton value="Info" onclick="PF('info').show();"
 					icon="ui-icon-info" />
 			</h:panelGrid>
 			<p:spacer height="10px" />
 
-			<p:layout style="max-height:252px;min-height:252px;">
-				<p:layoutUnit size="48%" position="west">
-					<p:panelGrid id="ratios" columns="2">
-						<f:facet name="header">
-							<h:outputText value="Analysis Results:" />
-						</f:facet>
-						<h:outputText value="Total classes ratio:" />
-						<h:outputText value="#{deepView.allResults.result.totRate}" />
-						<h:outputText value="Concrete ratio:" />
-						<h:outputText value="#{deepView.allResults.result.conRate}" />
-						<h:outputText value="Abstract ratio:" />
-						<h:outputText value="#{deepView.allResults.result.absRate}" />
-						<h:outputText value="Interfaces ratio:" />
-						<h:outputText value="#{deepView.allResults.result.intRate}" />
-						<h:outputText value="Members ratio:" />
-						<h:outputText value="#{deepView.allResults.result.memRate}" />
-						<h:outputText style="font-weight:bold" value="Dependency Ratio:" />
-						<h:outputText style="font-weight:bold"
-							value="#{deepView.allResults.result.depRate}" />
-					</p:panelGrid>
-				</p:layoutUnit>
-				<p:layoutUnit size="4%" position="center" visible="false">
+			<p:accordionPanel id="results" multiple="true"
+				activeIndex="#{deepView.activeTab}">
+				<p:tab title="Results">
+					<p:layout style="max-height:252px;min-height:252px;">
+						<p:layoutUnit size="48%" position="west">
+							<p:panelGrid id="ratios" columns="2">
+								<f:facet name="header">
+									<h:outputText value="Analysis Results:" />
+								</f:facet>
+								<h:outputText value="Total classes ratio:" />
+								<h:outputText value="#{deepView.allResults.result.totRate}" />
+								<h:outputText value="Concrete ratio:" />
+								<h:outputText value="#{deepView.allResults.result.conRate}" />
+								<h:outputText value="Abstract ratio:" />
+								<h:outputText value="#{deepView.allResults.result.absRate}" />
+								<h:outputText value="Interfaces ratio:" />
+								<h:outputText value="#{deepView.allResults.result.intRate}" />
+								<h:outputText value="Members ratio:" />
+								<h:outputText value="#{deepView.allResults.result.memRate}" />
+								<h:outputText style="font-weight:bold" value="Dependency Ratio:" />
+								<h:outputText style="font-weight:bold"
+									value="#{deepView.allResults.result.depRate}" />
+							</p:panelGrid>
+						</p:layoutUnit>
+						<p:layoutUnit size="4%" position="center" visible="false">
 
-				</p:layoutUnit>
-				<p:layoutUnit size="48%" position="east">
-					<p:panelGrid id="library" columns="2">
-						<f:facet name="header">
-							<h:outputText value="Library Quick Survey:" />
-						</f:facet>
-						<h:outputText value="Threshold:" />
-						<h:outputText value="#{deepView.selectedDir}" />
-						<h:outputText value="Class files:" />
-						<h:outputText value="#{deepView.allResults.targetClassFiles}" />
-						<h:outputText value="Concrete classes:" />
-						<h:outputText value="#{deepView.allResults.targetConcrete}" />
-						<h:outputText value="Abstract classes:" />
-						<h:outputText value="#{deepView.allResults.targetAbstract}" />
-						<h:outputText value="Interfaces:" />
-						<h:outputText value="#{deepView.allResults.targetInterfaces}" />
-						<h:outputText value="Fields and methods:" />
-						<h:outputText value="#{deepView.allResults.targetMembers}" />
-						<h:outputText value="Total of referenced classes:" />
-						<h:outputText value="#{deepView.allResults.referencedClasses}" />
-					</p:panelGrid>
-
-				</p:layoutUnit>
-			</p:layout>
-			<p:spacer height="5px" />
-			<p:accordionPanel id="tree">
+						</p:layoutUnit>
+						<p:layoutUnit size="48%" position="east">
+							<p:panelGrid id="library" columns="2">
+								<f:facet name="header">
+									<h:outputText value="Library Quick Survey:" />
+								</f:facet>
+								<h:outputText value="Threshold:" />
+								<h:outputText value="#{deepView.selectedDir}" />
+								<h:outputText value="Class files:" />
+								<h:outputText value="#{deepView.allResults.targetClassFiles}" />
+								<h:outputText value="Concrete classes:" />
+								<h:outputText value="#{deepView.allResults.targetConcrete}" />
+								<h:outputText value="Abstract classes:" />
+								<h:outputText value="#{deepView.allResults.targetAbstract}" />
+								<h:outputText value="Interfaces:" />
+								<h:outputText value="#{deepView.allResults.targetInterfaces}" />
+								<h:outputText value="Fields and methods:" />
+								<h:outputText value="#{deepView.allResults.targetMembers}" />
+								<h:outputText value="Total of referenced classes:" />
+								<h:outputText value="#{deepView.allResults.referencedClasses}" />
+							</p:panelGrid>
+						</p:layoutUnit>
+					</p:layout>
+				</p:tab>
 				<p:tab title="Dependency Tree" closable="false">
 					<p:tree value="#{deepView.allResults.dependencyTree}" var="node"
 						orientation="horizontal">
