@@ -32,7 +32,10 @@
 						<p:fileUpload value="#{deepView.fileSource}" mode="simple"
 							skinSimple="true" label="Browse" />
 						<p:commandButton value="Upload" ajax="false"
-							actionListener="#{deepView.uploadSource}" />
+							actionListener="#{deepView.uploadSource}">
+							<p:ajax process="@this" onstart="PF('statusDialog').show()"
+								onsuccess="PF('statusDialog').hide()" />
+						</p:commandButton>
 					</h:panelGrid>
 					<h:panelGrid id="source" columns="1"
 						style="margin: 0 auto;text-align: center;">
@@ -50,7 +53,10 @@
 						<p:fileUpload value="#{deepView.fileTarget}" mode="simple"
 							skinSimple="true" label="Browse" />
 						<p:commandButton value="Upload" ajax="false"
-							actionListener="#{deepView.uploadTarget}" update="threshold" />
+							actionListener="#{deepView.uploadTarget}" update="threshold">
+							<p:ajax process="@this" onstart="PF('statusDialog').show()"
+								onsuccess="PF('statusDialog').hide()" />
+						</p:commandButton>
 					</h:panelGrid>
 					<h:panelGrid id="target" columns="1"
 						style="margin: 0 auto;text-align: center;">
@@ -161,10 +167,10 @@
 				</p:tab>
 			</p:accordionPanel>
 			<p:spacer />
-			<p:dialog widgetVar="info"
-				header="readme.txt" modal="true"
+			<p:dialog widgetVar="info" header="readme.txt" modal="true"
 				showEffect="scale" hideEffect="scale" height="500" width="700">
-					<object type="text/html" data="./resources/readme.txt" style="width:680px;height:490px;" />
+				<object type="text/html" data="./resources/readme.txt"
+					style="width: 680px; height: 490px;" />
 			</p:dialog>
 		</h:form>
 	</ui:define>
