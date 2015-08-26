@@ -32,12 +32,14 @@ public class DeepView {
 	private TreeNode targetTree;
 	private Boolean showModal = Boolean.FALSE;
 	private TreeNode selectedDir;
+	private String activeTab;
 
 	public DeepView() {
 		displayWelcome();
 	}
-	
-	private void displayWelcome(){
+
+	private void displayWelcome() {
+		setActiveTab("-1");
 		FacesContext.getCurrentInstance().addMessage(
 				null,
 				new FacesMessage(FacesMessage.SEVERITY_INFO, "Welcome",
@@ -50,6 +52,14 @@ public class DeepView {
 
 	public void setSelectedDir(TreeNode selectedDir) {
 		this.selectedDir = selectedDir;
+	}
+
+	public String getActiveTab() {
+		return activeTab;
+	}
+
+	public void setActiveTab(String activeTab) {
+		this.activeTab = activeTab;
 	}
 
 	public String getShowModal() {
@@ -110,6 +120,7 @@ public class DeepView {
 
 	public void uploadSource() throws NoSuchFieldException, SecurityException,
 			IllegalArgumentException, IllegalAccessException, IOException {
+		setShowModal(Boolean.FALSE);
 		Field[] f = this.getClass().getFields();
 		checkUpload(getFileSource(), this.getClass().getField("source"));
 	}
@@ -133,8 +144,20 @@ public class DeepView {
 			if (FileUtils.hasExtension(file, Constants.file_extensions)) {
 				if (size <= Constants.file_max_size) {
 					toFile(file, field);
-					message = new FacesMessage("Successful", file.getFileName()
-							+ " is uploaded");
+					if (source == null) {
+						message = new FacesMessage(
+								"Successful",
+								file.getFileName()
+										+ " is uploaded. Now please upload Source Jar.");
+					} else if (target == null) {
+						message = new FacesMessage(
+								"Successful",
+								file.getFileName()
+										+ " is uploaded. Now please upload Library Jar.");
+					} else {
+						message = new FacesMessage("Successful",
+								" both Jars are uploaded. Now please press Start button.");
+					}
 				} else {
 					message = new FacesMessage(FacesMessage.SEVERITY_WARN,
 							"Warning:", "File size exceeds maximum of "
@@ -150,9 +173,11 @@ public class DeepView {
 
 	public void start(ActionEvent actionEvent) throws Exception {
 		try {
-			String threshold = getSelectedDir().getData().toString().replaceAll("/", "\\.");
+			String threshold = getSelectedDir().getData().toString()
+					.replaceAll("/", "\\.");
 			allResults = ds.start(source, target, threshold);
 			deleteFiles();
+			setActiveTab("0,1");
 			FacesContext.getCurrentInstance().addMessage(
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_INFO,
@@ -176,6 +201,7 @@ public class DeepView {
 		deleteFiles();
 		setSelectedDir(null);
 		setShowModal(Boolean.FALSE);
+		setActiveTab("-1");
 		displayWelcome();
 	}
 
