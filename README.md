@@ -10,7 +10,10 @@ It is a measure that can be used as a guide to determine a level level of coupli
 ### download
 The latest compiled version can be downloaded from [here].
 
-### how to use
+### web app
+http://trimatek.org/deep
+
+### how to use from command line
 ```sh
 java -jar deep.jar
 ```
