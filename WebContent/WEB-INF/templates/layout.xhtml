@@ -1,31 +1,57 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
-  <title><ui:insert name="title"><h:outputText value="Deep v#{deepView.appVersion}" /></ui:insert></title>
+	<title><ui:insert name="title">
+			<h:outputText value="Deep v#{deepView.appVersion}" />
+		</ui:insert></title>
 </h:head>
 
 <h:body>
 
-<div id="header">
-    <ui:insert name="header">
-        <ui:include src="/WEB-INF/templates/header.xhtml"/>
-    </ui:insert>
-</div>
+	<div id="header">
+		<ui:insert name="header">
+			<ui:include src="/WEB-INF/templates/header.xhtml" />
+		</ui:insert>
+	</div>
 
-<div id="content">
-    <ui:insert name="content">
-    </ui:insert>
-</div>
+	<div id="content">
+		<ui:insert name="content">
+		</ui:insert>
+	</div>
 
-<div id="footer">
-    <ui:insert name="footer">
-        <ui:include src="/WEB-INF/templates/footer.xhtml"/>
-    </ui:insert>
-</div>
-
+	<div id="footer">
+		<ui:insert name="footer">
+			<ui:include src="/WEB-INF/templates/footer.xhtml" />
+		</ui:insert>
+	</div>
+	<!-- Start of StatCounter Code for Default Guide -->
+	<script type="text/javascript">
+		//<![CDATA[
+		var sc_project = 9499392;
+		var sc_invisible = 1;
+		var sc_security = "7d3bb5c0";
+		var scJsHost = (("https:" == document.location.protocol) ? "https://secure."
+				: "http://www.");
+		document
+				.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter_xhtml.js'></"+"script>");
+		//]]>
+	</script>
+	<noscript>
+		<div class="statcounter">
+			<a title="shopify
+analytics ecommerce tracking"
+				href="http://statcounter.com/shopify/" class="statcounter"><img
+				class="statcounter"
+				src="http://c.statcounter.com/9499392/0/7d3bb5c0/1/"
+				alt="shopify analytics ecommerce tracking" /></a>
+		</div>
+	</noscript>
+	<!-- End of StatCounter Code for Default Guide -->
 </h:body>
 </html>

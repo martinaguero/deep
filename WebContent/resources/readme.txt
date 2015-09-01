@@ -10,8 +10,8 @@ Analysis
 abstracts and interfaces) and members (fields and methods) of the library.
 2. Then it searches for references to classes of the library jar in the source 
 jar and displays a Quick Survey Result.
-3. The thirt step is to build Deep Survey displaying a **_hierarchical tree 
-visualization_** in a dependency tree.
+3. The third step is to build Deep Survey displaying a hierarchical tree 
+visualization in a dependency tree.
 4. Finally it calculates a Dependency Ratio and outputs the results.
 
 Calculations
