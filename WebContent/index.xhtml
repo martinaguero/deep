@@ -32,7 +32,7 @@
 						<p:fileUpload value="#{deepView.fileSource}" mode="simple"
 							skinSimple="true" label="Browse" />
 						<p:commandButton value="Upload" ajax="false"
-							actionListener="#{deepView.uploadSource}">
+							actionListener="#{deepView.uploadSource}" update="start" >
 							<p:ajax process="@this" onstart="PF('statusDialog').show()"
 								onsuccess="PF('statusDialog').hide()" />
 						</p:commandButton>
@@ -53,7 +53,7 @@
 						<p:fileUpload value="#{deepView.fileTarget}" mode="simple"
 							skinSimple="true" label="Browse" />
 						<p:commandButton value="Upload" ajax="false"
-							actionListener="#{deepView.uploadTarget}" update="threshold">
+							actionListener="#{deepView.uploadTarget}" update="threshold,start">
 							<p:ajax process="@this" onstart="PF('statusDialog').show()"
 								onsuccess="PF('statusDialog').hide()" />
 						</p:commandButton>
@@ -83,7 +83,7 @@
 			<h:panelGrid columns="3">
 				<p:commandButton style="background-color:MediumTurquoise;"
 					value="Start" id="start" actionListener="#{deepView.start}"
-					update="results" icon="ui-icon-play" />
+					update="results" icon="ui-icon-play" disabled="#{deepView.startDisabled}" />
 				<p:commandButton value="Reset" id="reset"
 					actionListener="#{deepView.reset}" update="results,source,target"
 					icon="ui-icon-arrowrefresh-1-e" />

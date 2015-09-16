@@ -31,6 +31,7 @@ public class DeepView {
 	private AllResults allResults;
 	private TreeNode targetTree;
 	private Boolean showModal = Boolean.FALSE;
+	private Boolean startDisabled = Boolean.TRUE;
 	private TreeNode selectedDir;
 	private String activeTab;
 
@@ -44,6 +45,14 @@ public class DeepView {
 				null,
 				new FacesMessage(FacesMessage.SEVERITY_INFO, "Welcome",
 						"Please load JAR files (max file size 5MB)."));
+	}
+
+	public Boolean getStartDisabled() {
+		return startDisabled;
+	}
+
+	public void setStartDisabled(Boolean startDisabled) {
+		this.startDisabled = startDisabled;
 	}
 
 	public TreeNode getSelectedDir() {
@@ -155,8 +164,9 @@ public class DeepView {
 								file.getFileName()
 										+ " is uploaded. Now please upload Library Jar.");
 					} else {
+						startDisabled = Boolean.FALSE;
 						message = new FacesMessage("Successful",
-								" both Jars are uploaded. Now please press Start button.");
+								" both Jars are uploaded. Now press Start button to begin analysis.");
 					}
 				} else {
 					message = new FacesMessage(FacesMessage.SEVERITY_WARN,
