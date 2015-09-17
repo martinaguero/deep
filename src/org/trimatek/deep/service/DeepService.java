@@ -2,9 +2,9 @@ package org.trimatek.deep.service;
 
 import java.io.File;
 import java.util.Set;
-import java.util.logging.Logger;
 
 import org.apache.commons.collections4.MultiMap;
+import org.apache.log4j.Logger;
 import org.trimatek.deep.model.AllResults;
 import org.trimatek.deep.model.ClassProfile;
 import org.trimatek.deep.model.Result;
@@ -16,7 +16,7 @@ import org.trimatek.deep.utils.Utils;
 public class DeepService {
 
 	private TargetProfile targetProfile;
-	private final static Logger log = Logger.getLogger(DeepService.class.getName()); 
+	private final static Logger log = Logger.getLogger(DeepService.class); 
 
 	public TargetProfile getTargetProfile() {
 		return targetProfile;
@@ -39,7 +39,7 @@ public class DeepService {
 		allResults = targetProfile.loadResults(allResults);
 		sb.append(targetProfile.toString());
 		/* Source -> Target */
-		msg = "\nStart of [" + sourceFile.getName() + " -> "
+		msg = "Start of [" + sourceFile.getName() + " >> "
 				+ targetProfile.getJarName() + "] analysis";
 		log.info(msg);
 		sb.append(msg);
@@ -48,10 +48,9 @@ public class DeepService {
 				sourceFile.getAbsolutePath(), targetProfile);
 		Set<ClassProfile> uniques = Utils.toUniquesClassProfiles(depMap);
 		allResults.setReferencedClasses(uniques.size());
-		msg = "\n**Quick survey result:**\n";
-		msg = msg + "Total of referenced classes(concrete,abstract,interfaces) by "
-				+ sourceFile.getName() + ": " + uniques.size() + "\n";
-		msg = msg + "Building dependencies tree\nPlease wait";
+		log.info("Total of referenced classes(concrete,abstract,interfaces) by "
+				+ sourceFile.getName() + ": " + uniques.size());
+		log.info("Building dependencies tree");
 		log.info(msg);
 		sb.append(msg);
 		/* Tree build */
@@ -60,7 +59,7 @@ public class DeepService {
 		org.primefaces.model.TreeNode primeTree = TreeUtils.buildDepTree(depMap,
 				sourceFile.getAbsolutePath());
 		allResults.setDependencyTree(primeTree);
-		sb.append("\n\n**Deep survey:**");
+		sb.append("**Deep survey:**");
 		sb.append(Utils.printTree(depTree));
 		/* Calculate result */
 		log.info("Calculating results");

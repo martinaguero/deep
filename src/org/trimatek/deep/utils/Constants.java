@@ -12,5 +12,6 @@ public class Constants {
 	public final static int file_max_size = 5000000;
 	public final static String[] file_extensions = {"jar","zip"};
 	public final static String temp_dir = "/tmp";
+	//public final static String temp_dir = "f:\\Temp";
 	
 }

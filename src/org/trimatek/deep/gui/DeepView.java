@@ -12,6 +12,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
+import org.apache.log4j.Logger;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.primefaces.model.TreeNode;
 import org.primefaces.model.UploadedFile;
@@ -34,6 +35,7 @@ public class DeepView {
 	private Boolean startDisabled = Boolean.TRUE;
 	private TreeNode selectedDir;
 	private String activeTab;
+	private final static Logger logger = Logger.getLogger(DeepView.class);
 
 	public DeepView() {
 		displayWelcome();
@@ -186,6 +188,8 @@ public class DeepView {
 			String threshold = getSelectedDir().getData().toString()
 					.replaceAll("/", "\\.");
 			allResults = ds.start(source, target, threshold);
+			logger.info("Analysis [" + source.getName() + " >> "
+					+ target.getName() + "] completed");
 			deleteFiles();
 			setActiveTab("0,1");
 			FacesContext.getCurrentInstance().addMessage(
