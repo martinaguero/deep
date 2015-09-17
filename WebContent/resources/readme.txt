@@ -35,6 +35,7 @@ https://ece.uwaterloo.ca/~lintan/publications/dep-mtd13.pdf
 Technology
 * Apache BCEL 5.2
 * Apache Commons Collections 4.4
+* Apache Log4J 1.2.14
 * ANTLR 4.5
 * Procyon decompiler 0.5.29
 * ini4j 0.5.4
