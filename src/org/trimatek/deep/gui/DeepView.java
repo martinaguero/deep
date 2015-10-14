@@ -215,6 +215,7 @@ public class DeepView {
 		deleteFiles();
 		setSelectedDir(null);
 		setShowModal(Boolean.FALSE);
+		setStartDisabled(Boolean.TRUE);
 		setActiveTab("-1");
 		displayWelcome();
 	}
