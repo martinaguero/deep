@@ -85,7 +85,7 @@
 					value="Start" id="start" actionListener="#{deepView.start}"
 					update="results" icon="ui-icon-play" disabled="#{deepView.startDisabled}" />
 				<p:commandButton value="Reset" id="reset"
-					actionListener="#{deepView.reset}" update="results,source,target"
+					actionListener="#{deepView.reset}" update="results,source,target,start"
 					icon="ui-icon-arrowrefresh-1-e" />
 				<p:commandButton style="background-color:Orange;" value="Help!" onclick="PF('help').show();"
 					icon="ui-icon-info" />
