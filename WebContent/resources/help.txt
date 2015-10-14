@@ -9,6 +9,7 @@ HOW TO USE:
 
 1) Load Source Jar (your software)
 2) Load Target Jar (the library)
+3) Set a threshold for the analysis (the target packages in library)
 3) Press Start button
 
 The analysis begins and after a few seconds the calculations will be 
