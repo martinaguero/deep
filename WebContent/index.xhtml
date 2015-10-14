@@ -80,15 +80,17 @@
 				</p:tree>
 			</p:dialog>
 
-			<h:panelGrid columns="3">
+			<h:panelGrid columns="4">
 				<p:commandButton style="background-color:MediumTurquoise;"
 					value="Start" id="start" actionListener="#{deepView.start}"
 					update="results" icon="ui-icon-play" disabled="#{deepView.startDisabled}" />
 				<p:commandButton value="Reset" id="reset"
 					actionListener="#{deepView.reset}" update="results,source,target"
 					icon="ui-icon-arrowrefresh-1-e" />
-				<p:commandButton value="Info" onclick="PF('info').show();"
+				<p:commandButton style="background-color:Orange;" value="Help!" onclick="PF('help').show();"
 					icon="ui-icon-info" />
+				<p:commandButton value="About" onclick="PF('info').show();"
+					icon="ui-icon-tag" />	
 			</h:panelGrid>
 			<p:spacer height="10px" />
 
@@ -168,6 +170,11 @@
 				</p:tab>
 			</p:accordionPanel>
 			<p:spacer />
+			<p:dialog widgetVar="help" header="help.txt" modal="true"
+				showEffect="scale" hideEffect="scale" >
+				<object type="text/html" data="./resources/help.txt"
+					style="width: 680px; height: 490px;" />
+			</p:dialog>
 			<p:dialog widgetVar="info" header="readme.txt" modal="true"
 				showEffect="scale" hideEffect="scale" >
 				<object type="text/html" data="./resources/readme.txt"

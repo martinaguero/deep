@@ -1,0 +1,15 @@
+DEEP v1.1 (beta)
+Java Dependencies Analysis
+
+This software reads the byte code of a JAR file and calculates a degree of 
+dependency between another JAR. It is a measure that can be used as a guide
+to determine a level of coupling between two JAR files.
+
+HOW TO USE:
+
+1) Load Source Jar (your software)
+2) Load Target Jar (the library)
+3) Press Start button
+
+The analysis begins and after a few seconds the calculations will be 
+displayed in the Results panel. Also will be available the Dependency Tree.
