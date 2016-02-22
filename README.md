@@ -65,7 +65,7 @@ Dependency ratio:
 * ini4j 0.5.4
 
 ### author
-[Martín Agüero] is professor at Universidad de Palermo located in Buenos Aires, Argentina
+[Martín Agüero] is professor at Universidad de Palermo
 
 ### contact
 Questions, issues or suggestions are welcome at `aguero.martin@gmail.com`
