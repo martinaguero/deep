@@ -65,7 +65,7 @@ Dependency ratio:
 * ini4j 0.5.4
 
 ### author
-Martín Agüero is professor at [Universidad de Palermo] located in Buenos Aires, Argentina
+[Martín Agüero] is professor at Universidad de Palermo located in Buenos Aires, Argentina
 
 ### contact
 Questions, issues or suggestions are welcome at `aguero.martin@gmail.com`
@@ -73,3 +73,4 @@ Questions, issues or suggestions are welcome at `aguero.martin@gmail.com`
 [here]:http://bit.ly/deep-jar
 [Universidad de Palermo]: http://www.palermo.edu
 [this]:http://www.objectmentor.com/resources/articles/oodmetrc.pdf
+[Martín Agüero]:https://ar.linkedin.com/in/martinaguero
