@@ -14,3 +14,6 @@ HOW TO USE:
 
 The analysis begins and after a few seconds the calculations will be 
 displayed in the Results panel. Also will be available the Dependency Tree.
+
+MORE INFO (PAPER IN SPANISH)
+http://conaiisi2015.utn.edu.ar/memorias/Ingenieria/118-597-1-DR.pdf

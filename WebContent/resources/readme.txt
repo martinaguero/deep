@@ -44,5 +44,8 @@ TECHNOLOGY
 SOURCE CODE
 https://github.com/martinaguero/deep
 
-AUTHOR:
+MORE INFO (PAPER IN SPANISH)
+http://conaiisi2015.utn.edu.ar/memorias/Ingenieria/118-597-1-DR.pdf
+
+AUTHOR
 Martín Agüero - aguero.martin@gmail.com
