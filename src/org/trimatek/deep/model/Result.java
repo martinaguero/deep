@@ -18,17 +18,22 @@ public class Result {
 	}
 
 	private void updateResults() {
+		int divider = 0;
 		if (tarClasses != 0)
 			totRate = classes / (float) tarClasses;
 		if (tarConcrete != 0)
 			conRate = concrete / (float) tarConcrete;
-		if (tarAbstract != 0)
+			if (conRate > 0) divider++;
+		if (tarAbstract != 0) 
 			absRate = abstracts / (float) tarAbstract;
-		if (tarIntefaces != 0)
+			if (absRate > 0) divider++;
+		if (tarIntefaces != 0) 
 			intRate = interfaces / (float) tarIntefaces;
+			if (intRate > 0) divider++;
 		if (tarMembers != 0)
 			memRate = (fields + methods) / (float) tarMembers;
-		depRate = (conRate + absRate + intRate + memRate) / 4;
+			if (memRate > 0) divider++;
+		depRate = (conRate + absRate + intRate + memRate) / divider;
 	}
 
 	public String toString() {

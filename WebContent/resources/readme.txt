@@ -1,4 +1,4 @@
-DEEP v1.1 (beta)
+DEEP v1.2 (beta)
 Java Dependencies Analysis
 
 This software reads the byte code of a JAR file and calculates a degree of 
@@ -26,7 +26,7 @@ Ti: Total of interfaces classes available in T
 Rm: Members referenced in S
 Tm: Total of members available in T
 
-The Dependency Ratio(*) is: (Rc/Tc+Ra/Ta+Ri/Ti+Rm/Tm)/4
+The Dependency Ratio(*) is: (Rc/Tc+Ra/Ta+Ri/Ti+Rm/Tm)/(quotients>0)
 (*) based on the work by Robert Martin: 
 http://www.objectmentor.com/resources/articles/oodmetrc.pdf
 and Wang et al.:
