@@ -7,9 +7,6 @@ It is a measure that can be used as a guide to determine a level level of coupli
 ### version
 1.01 (July 17 2015)
 
-### web app
-http://trimatek.org/deep
-
 ### how to use from command line
 ```sh
 java -jar deep.jar
