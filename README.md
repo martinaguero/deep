@@ -7,9 +7,6 @@ It is a measure that can be used as a guide to determine a level level of coupli
 ### version
 1.01 (July 17 2015)
 
-### download
-The latest compiled version can be downloaded from [here].
-
 ### web app
 http://trimatek.org/deep
 
@@ -38,25 +35,6 @@ The partial results are this proportions:
 ##### The Dependency Ratio(*) is: `( A + B + C + D ) / 4`
 ###### (*) based on [this] work by Robert Martin
 
-### screens
-Screens of [**hibernate-core-4.3.10.Final.jar** -> **dom4j-1.6.1.jar**] analysis
-
-Library profile:
-
-![alt text](https://dl.dropboxusercontent.com/u/13410677/deep/img/lib-profile-scr.jpg "Library profile")
-
-Hierarchical tree visualization:
-
-![alt text](https://dl.dropboxusercontent.com/u/13410677/deep/img/tree-scr.jpg "Tree view")
-
-Tree summary:
-
-![alt text](https://dl.dropboxusercontent.com/u/13410677/deep/img/tree-sum-scr.jpg "Tree summary")
-
-Dependency ratio:
-
-![alt text](https://dl.dropboxusercontent.com/u/13410677/deep/img/dep-ratio-scr.jpg "Dependency ratio")
-
 ### technology
 * Apache BCEL 5.2
 * Apache Commons Collections 4.4
@@ -64,13 +42,10 @@ Dependency ratio:
 * Procyon decompiler 0.5.29
 * ini4j 0.5.4
 
-### author
-Martín Agüero is professor at [Universidad Tecnológica Nacional] Facultad Regional Buenos Aires, Argentina
-
 ### contact
 Questions, issues or suggestions are welcome at `aguero.martin@gmail.com`
 
 [here]:http://bit.ly/deep-jar
-[Universidad Tecnológica Nacional]: http://www.utn.edu.ar/
+[Universidad TecnolÃ³gica Nacional]: http://www.utn.edu.ar/
 [this]:http://www.objectmentor.com/resources/articles/oodmetrc.pdf
-[MartÃ­n AgÃ¼ero]:https://ar.linkedin.com/in/martinaguero
+[MartÃƒÂ­n AgÃƒÂ¼ero]:https://ar.linkedin.com/in/martinaguero
